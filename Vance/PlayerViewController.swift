@@ -42,7 +42,7 @@ class PlayerViewController: UIViewController {
     }()
     private lazy var pasteButton: UIButton = {
         var configuration = UIButton.Configuration.filled()
-        configuration.title = "Use Pasteboard".localized
+        configuration.title = "Use pasteboard".localized
         let button = UIButton(configuration: configuration)
         button.translatesAutoresizingMaskIntoConstraints = false
         button.isEnabled = false
