@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "1330"
+   LastUpgradeVersion = "1400"
    version = "2.0">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "24F6C7DD280C70D20009B917"
+               BlueprintIdentifier = "24C0427D28D257AA00270C62"
                BuildableName = "Vance.app"
                BlueprintName = "Vance"
                ReferencedContainer = "container:Vance.xcodeproj">
@@ -35,23 +35,23 @@
       selectedDebuggerIdentifier = ""
       selectedLauncherIdentifier = "Xcode.IDEFoundation.Launcher.PosixSpawn"
       disableMainThreadChecker = "YES"
-      launchStyle = "1"
+      disablePerformanceAntipatternChecker = "YES"
+      launchStyle = "0"
       useCustomWorkingDirectory = "NO"
       ignoresPersistentStateOnLaunch = "NO"
-      debugDocumentVersioning = "NO"
+      debugDocumentVersioning = "YES"
       debugXPCServices = "NO"
       debugServiceExtension = "internal"
       enableGPUFrameCaptureMode = "3"
       enableGPUValidationMode = "1"
       allowLocationSimulation = "NO"
       viewDebuggingEnabled = "No"
-      queueDebuggingEnabled = "No"
-      GPUProfilerEnabled = "No">
+      queueDebuggingEnabled = "No">
       <BuildableProductRunnable
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "24F6C7DD280C70D20009B917"
+            BlueprintIdentifier = "24C0427D28D257AA00270C62"
             BuildableName = "Vance.app"
             BlueprintName = "Vance"
             ReferencedContainer = "container:Vance.xcodeproj">
@@ -68,7 +68,7 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "24F6C7DD280C70D20009B917"
+            BlueprintIdentifier = "24C0427D28D257AA00270C62"
             BuildableName = "Vance.app"
             BlueprintName = "Vance"
             ReferencedContainer = "container:Vance.xcodeproj">
