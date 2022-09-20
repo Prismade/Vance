@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "1330"
+   LastUpgradeVersion = "1400"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "24F6C7DD280C70D20009B917"
+               BlueprintIdentifier = "24C0427D28D257AA00270C62"
                BuildableName = "Vance.app"
                BlueprintName = "Vance"
                ReferencedContainer = "container:Vance.xcodeproj">
@@ -44,7 +44,7 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "24F6C7DD280C70D20009B917"
+            BlueprintIdentifier = "24C0427D28D257AA00270C62"
             BuildableName = "Vance.app"
             BlueprintName = "Vance"
             ReferencedContainer = "container:Vance.xcodeproj">
@@ -61,7 +61,7 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "24F6C7DD280C70D20009B917"
+            BlueprintIdentifier = "24C0427D28D257AA00270C62"
             BuildableName = "Vance.app"
             BlueprintName = "Vance"
             ReferencedContainer = "container:Vance.xcodeproj">
