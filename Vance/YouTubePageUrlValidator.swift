@@ -9,7 +9,7 @@
 import Foundation
 
 struct YouTubePageUrlValidator {
-    static let prefixes = ["https://youtu.be/", "https://youtube.com/watch"]
+    static let prefixes = ["https://youtu.be/", "https://youtube.com", "https://www.youtube.com/live"]
     
     static func validate(url: URL) -> Bool {
         return validate(urlString: url.absoluteString)
