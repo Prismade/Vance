@@ -59,6 +59,10 @@ class PlayerViewController: UIViewController {
         return button
     }()
     
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        .lightContent
+    }
+    
     deinit {
         NotificationCenter.default.removeObserver(self)
     }
@@ -72,6 +76,7 @@ class PlayerViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setNeedsStatusBarAppearanceUpdate()
         setLayoutConstraints()
         addObserversForNotifications()
         preparePlayer()
@@ -194,9 +199,10 @@ private extension PlayerViewController {
     func setLayoutConstraints() {
         NSLayoutConstraint.activate([
             videoContainer.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            videoContainer.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            videoContainer.topAnchor.constraint(equalTo: view.topAnchor),
             videoContainer.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            videoContainer.heightAnchor.constraint(equalTo: videoContainer.widthAnchor, multiplier: 9.0 / 16.0),
+            
+
             
             hintLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16.0),
             hintLabel.topAnchor.constraint(equalTo: videoContainer.bottomAnchor, constant: 20.0),
@@ -215,9 +221,10 @@ private extension PlayerViewController {
             openButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16.0),
             
             playerViewController.view.leadingAnchor.constraint(equalTo: videoContainer.leadingAnchor),
-            playerViewController.view.topAnchor.constraint(equalTo: videoContainer.topAnchor),
+            playerViewController.view.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             playerViewController.view.trailingAnchor.constraint(equalTo: videoContainer.trailingAnchor),
-            playerViewController.view.bottomAnchor.constraint(equalTo: videoContainer.bottomAnchor)
+            playerViewController.view.bottomAnchor.constraint(equalTo: videoContainer.bottomAnchor),
+            playerViewController.view.heightAnchor.constraint(equalTo: playerViewController.view.widthAnchor, multiplier: 9.0 / 16.0)
         ])
     }
 }
