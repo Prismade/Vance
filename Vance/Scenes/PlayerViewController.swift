@@ -204,7 +204,13 @@ class PlayerViewController: UIViewController {
                     return
                 }
                 updateVideoDetails(with: details)
-                playVideo(from: details)
+                var thumbnail: Data?
+                if let thumbnailURL = details.thumbnails?.first(where: { thumbnail in
+                    thumbnail.size.height == 480
+                })?.url {
+                    thumbnail = await downloadThumbnail(from: thumbnailURL)
+                }
+                playVideo(from: details, with: thumbnail)
             } catch {
                 print(error.localizedDescription)
                 presentAlert(title: "Unable to load video".localized, message: "An error occurred".localized)
@@ -228,8 +234,17 @@ class PlayerViewController: UIViewController {
         authorLabel.text = "👤 \(author)"
     }
     
+    private func downloadThumbnail(from url: URL) async -> Data? {
+        do {
+            let (data, _) = try await URLSession.shared.data(from: url)
+            return data
+        } catch {
+            return nil
+        }
+    }
+    
     @MainActor
-    private func playVideo(from details: VideoDetails) {
+    private func playVideo(from details: VideoDetails, with thumbnail: Data?) {
         guard let player = player else { return }
         
         var mediaUrl: URL?
@@ -250,6 +265,29 @@ class PlayerViewController: UIViewController {
         }
         
         let item = AVPlayerItem(url: url)
+        
+        var meta: [AVMutableMetadataItem] = []
+        
+        let title = AVMutableMetadataItem()
+        title.identifier = .commonIdentifierTitle
+        title.value = (details.title ?? "YouTube video") as NSString
+        meta.append(title)
+
+        let artist = AVMutableMetadataItem()
+        artist.identifier = .commonIdentifierArtist
+        artist.value = (details.author ?? "Vance") as NSString
+        meta.append(artist)
+        
+        if let thumbnail {
+            let artwork = AVMutableMetadataItem()
+            artwork.identifier = .commonIdentifierArtwork
+            artwork.value = thumbnail as NSData
+            artwork.dataType = kCMMetadataBaseDataType_JPEG as String
+            meta.append(artwork)
+        }
+        
+        item.externalMetadata = meta
+        
         if player.canInsert(item, after: nil) {
             player.insert(item, after: nil)
         }
