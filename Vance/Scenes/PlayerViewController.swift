@@ -30,7 +30,6 @@ class PlayerViewController: UIViewController {
     private lazy var scrollView: UIScrollView = {
         let view = UIScrollView()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.contentInset = UIEdgeInsets(top: 16.0, left: 16.0, bottom: 16.0, right: -16.0)
         return view
     }()
     private lazy var contentView: UIStackView = {
@@ -43,8 +42,6 @@ class PlayerViewController: UIViewController {
     private lazy var detailsContainer: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = .secondarySystemBackground
-        view.layer.cornerRadius = 20.0
         view.clipsToBounds = true
         view.isHidden = true
         return view
@@ -76,8 +73,6 @@ class PlayerViewController: UIViewController {
     private lazy var controlContainer: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = .secondarySystemBackground
-        view.layer.cornerRadius = 20.0
         view.clipsToBounds = true
         return view
     }()
@@ -327,7 +322,7 @@ private extension PlayerViewController {
             scrollView.topAnchor.constraint(equalTo: videoContainer.bottomAnchor),
             scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-            scrollView.contentLayoutGuide.widthAnchor.constraint(equalTo: scrollView.widthAnchor, multiplier: 1.0, constant: -32.0),
+            scrollView.contentLayoutGuide.widthAnchor.constraint(equalTo: scrollView.widthAnchor, multiplier: 1.0),
             
             contentView.leadingAnchor.constraint(equalTo: scrollView.contentLayoutGuide.leadingAnchor),
             contentView.topAnchor.constraint(equalTo: scrollView.contentLayoutGuide.topAnchor),
