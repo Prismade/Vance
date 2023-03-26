@@ -11,7 +11,6 @@ import Python
 import PythonKit
 
 final class YoutubeDL {
-    private let pipPackageURL = URL(string: "https://github.com/yt-dlp/yt-dlp/releases/latest/download/yt-dlp")!
     private let applicationSupportDirectoryURL: URL
     private let pipPackagePathURL: URL
     
@@ -32,31 +31,9 @@ final class YoutubeDL {
         }
     }
     
-    // MARK: - Python module managing
-    
-    func downloadPIPPackageIfNeeded() async throws {
-        guard !checkIfPIPPackageWasDownloaded() else { return }
-        let (downloadLocationURL, _) = try await URLSession.shared.download(from: pipPackageURL)
-        try FileManager.default.moveItem(at: downloadLocationURL, to: pipPackagePathURL)
-    }
-    
-    private func checkIfPIPPackageWasDownloaded() -> Bool {
-        return FileManager.default.fileExists(atPath: pipPackagePathURL.path)
-    }
-    
-    private func addPIPPackageDirectoryToPATHIfNeeded() throws {
-        let sys = try Python.attemptImport("sys")
-        let path: [String] = Array(sys.path) ?? []
-        if !path.contains(pipPackagePathURL.path) {
-            sys.path.insert(1, pipPackagePathURL.path)
-        }
-    }
-    
     // MARK: - Main methods
     
     func extractInfo(from url: String) throws -> VideoDetails? {
-        try addPIPPackageDirectoryToPATHIfNeeded()
-        
         let ytdlpModule = Python.import("yt-dlp")
         let jsonModule = Python.import("json")
         

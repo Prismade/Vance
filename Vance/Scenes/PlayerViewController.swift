@@ -195,8 +195,6 @@ class PlayerViewController: UIViewController {
             guard let ytdl = YoutubeDL() else { return }
             
             do {
-                try await ytdl.downloadPIPPackageIfNeeded()
-                
                 guard let details = try ytdl.extractInfo(from: url) else { return }
                 
                 updateVideoDetails(with: details)
