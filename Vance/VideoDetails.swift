@@ -14,11 +14,11 @@ struct VideoThumbnail {
 }
 
 struct VideoDetails {
-    let isLiveStream: Bool
-    let urls: [String: URL]
+    let url: URL
+    let headers: [String: String]
     let title: String?
     let description: String?
     let author: String?
-    let thumbnails: [VideoThumbnail]?
+    let thumbnail: String?
     let viewCount: String?
 }

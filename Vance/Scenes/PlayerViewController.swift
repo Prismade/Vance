@@ -9,6 +9,8 @@
 import UIKit
 import AVKit
 import AVFoundation
+import Python
+import PythonKit
 
 class PlayerViewController: UIViewController {
     private var player: AVQueuePlayer?
@@ -173,10 +175,7 @@ class PlayerViewController: UIViewController {
     @objc
     private func handleOpenButtonTap(_ sender: UIButton) {
         view.endEditing(true)
-        guard
-            let urlString = linkTextField.text,
-            let url = URL(string: urlString)
-        else {
+        guard let url = linkTextField.text else {
             presentAlert(title: "Unable to load video".localized, message: "An error occurred".localized)
             return
         }
@@ -188,50 +187,48 @@ class PlayerViewController: UIViewController {
         guard let urlFromPasteboard = UIPasteboard.general.url else { return }
         linkTextField.text = urlFromPasteboard.absoluteString
         openButton.isEnabled = true
-        handleYouTubeUrl(urlFromPasteboard)
+        handleYouTubeUrl(urlFromPasteboard.absoluteString)
     }
     
-    private func handleYouTubeUrl(_ url: URL) {
+    private func handleYouTubeUrl(_ url: String) {
         Task {
+            guard let ytdl = YoutubeDL() else { return }
+            
             do {
-                let extractor = YouTubeInfoExtractor()
-                guard
-                    let page = YouTubeWebPage(videoURL: url),
-                    let html = try await page.load(),
-                    let details = extractor.extractInfo(from: html)
-                else {
-                    presentAlert(title: "Unable to load video".localized, message: "An error occurred".localized)
-                    return
-                }
+                try await ytdl.downloadPIPPackageIfNeeded()
+                
+                guard let details = try ytdl.extractInfo(from: url) else { return }
+                
                 updateVideoDetails(with: details)
+                
                 var thumbnail: Data?
-                if let thumbnailURL = details.thumbnails?.first(where: { thumbnail in
-                    thumbnail.size.height == 480
-                })?.url {
+                if let thumbnailURLString = details.thumbnail, let thumbnailURL = URL(string: thumbnailURLString) {
                     thumbnail = await downloadThumbnail(from: thumbnailURL)
                 }
+                
                 playVideo(from: details, with: thumbnail)
-            } catch {
-                print(error.localizedDescription)
-                presentAlert(title: "Unable to load video".localized, message: "An error occurred".localized)
+            } catch let error {
+                print(#file, #line, error.localizedDescription)
             }
         }
     }
     
     @MainActor
     private func updateVideoDetails(with details: VideoDetails) {
-        guard
-            let title = details.title,
-            let viewCount = details.viewCount,
-            let author = details.author
-        else {
-            detailsContainer.isHidden = true
-            return
-        }
         detailsContainer.isHidden = false
-        titleLabel.text = title
-        viewsLabel.text = "\(viewCount) \("Views".localized)"
-        authorLabel.text = "👤 \(author)"
+        titleLabel.text = details.title
+        if let viewCount = details.viewCount {
+            viewsLabel.isHidden = false
+            viewsLabel.text = "\(viewCount) \("Views".localized)"
+        } else {
+            viewsLabel.isHidden = true
+        }
+        if let author = details.author {
+            authorLabel.isHidden = false
+            authorLabel.text = "👤 \(author)"
+        } else {
+            authorLabel.isHidden = true
+        }
     }
     
     private func downloadThumbnail(from url: URL) async -> Data? {
@@ -247,16 +244,6 @@ class PlayerViewController: UIViewController {
     private func playVideo(from details: VideoDetails, with thumbnail: Data?) {
         guard let player = player else { return }
         
-        var mediaUrl: URL?
-        
-        if details.isLiveStream {
-            mediaUrl = details.urls["livestream"]
-        } else {
-            mediaUrl = details.urls["format_medium"] ?? details.urls["adaptiveFormat_360p"]
-        }
-        
-        guard let url = mediaUrl else { return }
-        
         let session = AVAudioSession.sharedInstance()
         do {
             try session.setActive(true)
@@ -264,7 +251,8 @@ class PlayerViewController: UIViewController {
             print(error.localizedDescription)
         }
         
-        let item = AVPlayerItem(url: url)
+        let asset = AVURLAsset(url: details.url, options: ["AVURLAssetHTTPHeaderFieldsKey": details.headers])
+        let item = AVPlayerItem(asset: asset)
         
         var meta: [AVMutableMetadataItem] = []
         
@@ -272,11 +260,6 @@ class PlayerViewController: UIViewController {
         title.identifier = .commonIdentifierTitle
         title.value = (details.title ?? "YouTube video") as NSString
         meta.append(title)
-
-        let artist = AVMutableMetadataItem()
-        artist.identifier = .commonIdentifierArtist
-        artist.value = (details.author ?? "Vance") as NSString
-        meta.append(artist)
         
         if let thumbnail {
             let artwork = AVMutableMetadataItem()
@@ -291,8 +274,6 @@ class PlayerViewController: UIViewController {
         if player.canInsert(item, after: nil) {
             player.insert(item, after: nil)
         }
-        
-        print("Playing \(url.absoluteString)")
         
         if player.items().count > 1 {
             player.advanceToNextItem()
