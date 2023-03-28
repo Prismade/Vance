@@ -9,9 +9,6 @@
 /* Begin PBXBuildFile section */
 		2412EB2528DA34690080DC0F /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2412EB2728DA34690080DC0F /* Localizable.strings */; };
 		2432363B299026B7002DD2E4 /* VideoDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2432363A299026B7002DD2E4 /* VideoDetails.swift */; };
-		24409570297418ED00B8815F /* InnertubeClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2440956F297418ED00B8815F /* InnertubeClient.swift */; };
-		244095722974201000B8815F /* YouTubeWebPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 244095712974201000B8815F /* YouTubeWebPage.swift */; };
-		2441E00E296AB0BE00763965 /* RegexUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2441E00D296AB0BE00763965 /* RegexUtil.swift */; };
 		246D53D32976914B00098B1B /* Dictionary+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246D53D22976914B00098B1B /* Dictionary+Convenience.swift */; };
 		24C0428228D257AA00270C62 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24C0428128D257AA00270C62 /* AppDelegate.swift */; };
 		24C0428428D257AA00270C62 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24C0428328D257AA00270C62 /* SceneDelegate.swift */; };
@@ -19,17 +16,18 @@
 		24C0429628D25C4800270C62 /* Notification+Name.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24C0429528D25C4800270C62 /* Notification+Name.swift */; };
 		24C0429828D25DEB00270C62 /* PlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24C0429728D25DEB00270C62 /* PlayerViewController.swift */; };
 		24C0429A28D2602100270C62 /* String+Localized.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24C0429928D2602100270C62 /* String+Localized.swift */; };
-		24C042A028D26A7F00270C62 /* YouTubeInfoExtractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24C0429F28D26A7F00270C62 /* YouTubeInfoExtractor.swift */; };
-		24C042A428D2706A00270C62 /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24C042A328D2706A00270C62 /* Errors.swift */; };
+		24D0DB7629C1385200AC450E /* PythonModules in Resources */ = {isa = PBXBuildFile; fileRef = 24D0DB7529C1385200AC450E /* PythonModules */; };
+		24D5AF9C29BA5B2D0060F8BF /* PythonKit in Frameworks */ = {isa = PBXBuildFile; productRef = 24D5AF9B29BA5B2D0060F8BF /* PythonKit */; };
+		24D5AFA129BA5B960060F8BF /* Python.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24D5AFA029BA5B960060F8BF /* Python.xcframework */; };
+		24D5B5FF29BA5C0F0060F8BF /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24D5B5FE29BA5C0F0060F8BF /* SystemConfiguration.framework */; };
+		24D5B60129BA5D5B0060F8BF /* python-stdlib in Resources */ = {isa = PBXBuildFile; fileRef = 24D5B60029BA5D5B0060F8BF /* python-stdlib */; };
+		24F503C829BBB2D70001CD8F /* YoutubeDL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24F503C729BBB2D70001CD8F /* YoutubeDL.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		2412EB2628DA34690080DC0F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		2412EB2828DA34A30080DC0F /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
 		2432363A299026B7002DD2E4 /* VideoDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoDetails.swift; sourceTree = "<group>"; };
-		2440956F297418ED00B8815F /* InnertubeClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InnertubeClient.swift; sourceTree = "<group>"; };
-		244095712974201000B8815F /* YouTubeWebPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YouTubeWebPage.swift; sourceTree = "<group>"; };
-		2441E00D296AB0BE00763965 /* RegexUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegexUtil.swift; sourceTree = "<group>"; };
 		246D53D22976914B00098B1B /* Dictionary+Convenience.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Dictionary+Convenience.swift"; sourceTree = "<group>"; };
 		24C0427E28D257AA00270C62 /* Vance.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Vance.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		24C0428128D257AA00270C62 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -39,8 +37,11 @@
 		24C0429528D25C4800270C62 /* Notification+Name.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Notification+Name.swift"; sourceTree = "<group>"; };
 		24C0429728D25DEB00270C62 /* PlayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerViewController.swift; sourceTree = "<group>"; };
 		24C0429928D2602100270C62 /* String+Localized.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Localized.swift"; sourceTree = "<group>"; };
-		24C0429F28D26A7F00270C62 /* YouTubeInfoExtractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YouTubeInfoExtractor.swift; sourceTree = "<group>"; };
-		24C042A328D2706A00270C62 /* Errors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Errors.swift; sourceTree = "<group>"; };
+		24D0DB7529C1385200AC450E /* PythonModules */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = folder; path = PythonModules; sourceTree = SOURCE_ROOT; };
+		24D5AFA029BA5B960060F8BF /* Python.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = Python.xcframework; sourceTree = "<group>"; };
+		24D5B5FE29BA5C0F0060F8BF /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		24D5B60029BA5D5B0060F8BF /* python-stdlib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "python-stdlib"; sourceTree = SOURCE_ROOT; };
+		24F503C729BBB2D70001CD8F /* YoutubeDL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YoutubeDL.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -48,6 +49,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				24D5AF9C29BA5B2D0060F8BF /* PythonKit in Frameworks */,
+				24D5B5FF29BA5C0F0060F8BF /* SystemConfiguration.framework in Frameworks */,
+				24D5AFA129BA5B960060F8BF /* Python.xcframework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -86,6 +90,7 @@
 			children = (
 				24C0428028D257AA00270C62 /* Vance */,
 				24C0427F28D257AA00270C62 /* Products */,
+				24D5B5FD29BA5C0F0060F8BF /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -100,20 +105,27 @@
 		24C0428028D257AA00270C62 /* Vance */ = {
 			isa = PBXGroup;
 			children = (
+				24D0DB7529C1385200AC450E /* PythonModules */,
+				24D5B60029BA5D5B0060F8BF /* python-stdlib */,
+				24D5AFA029BA5B960060F8BF /* Python.xcframework */,
 				2432363829901B6E002DD2E4 /* App */,
 				241ED9C4298AE83B00BBB1D9 /* Extensions */,
 				2432363929901B84002DD2E4 /* Scenes */,
-				244095712974201000B8815F /* YouTubeWebPage.swift */,
-				24C0429F28D26A7F00270C62 /* YouTubeInfoExtractor.swift */,
+				24F503C729BBB2D70001CD8F /* YoutubeDL.swift */,
 				2432363A299026B7002DD2E4 /* VideoDetails.swift */,
-				2441E00D296AB0BE00763965 /* RegexUtil.swift */,
-				2440956F297418ED00B8815F /* InnertubeClient.swift */,
-				24C042A328D2706A00270C62 /* Errors.swift */,
 				24C0428A28D257AA00270C62 /* Assets.xcassets */,
 				2412EB2728DA34690080DC0F /* Localizable.strings */,
 				24C0428F28D257AA00270C62 /* Info.plist */,
 			);
 			path = Vance;
+			sourceTree = "<group>";
+		};
+		24D5B5FD29BA5C0F0060F8BF /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				24D5B5FE29BA5C0F0060F8BF /* SystemConfiguration.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -126,12 +138,16 @@
 				24C0427A28D257AA00270C62 /* Sources */,
 				24C0427B28D257AA00270C62 /* Frameworks */,
 				24C0427C28D257AA00270C62 /* Resources */,
+				24D5B60229BA5DCE0060F8BF /* Sign Python Binary Modules */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			name = Vance;
+			packageProductDependencies = (
+				24D5AF9B29BA5B2D0060F8BF /* PythonKit */,
+			);
 			productName = Vance;
 			productReference = 24C0427E28D257AA00270C62 /* Vance.app */;
 			productType = "com.apple.product-type.application";
@@ -162,6 +178,9 @@
 				ru,
 			);
 			mainGroup = 24C0427528D257AA00270C62;
+			packageReferences = (
+				24D5AF9A29BA5B2D0060F8BF /* XCRemoteSwiftPackageReference "PythonKit" */,
+			);
 			productRefGroup = 24C0427F28D257AA00270C62 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -176,30 +195,50 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				24D0DB7629C1385200AC450E /* PythonModules in Resources */,
 				24C0428B28D257AA00270C62 /* Assets.xcassets in Resources */,
 				2412EB2528DA34690080DC0F /* Localizable.strings in Resources */,
+				24D5B60129BA5D5B0060F8BF /* python-stdlib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		24D5B60229BA5DCE0060F8BF /* Sign Python Binary Modules */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Sign Python Binary Modules";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "set -e\necho \"Signing as $EXPANDED_CODE_SIGN_IDENTITY_NAME ($EXPANDED_CODE_SIGN_IDENTITY)\"\nfind \"$CODESIGNING_FOLDER_PATH/python-stdlib/lib-dynload\" -name \"*.so\" -exec /usr/bin/codesign --force --sign \"$EXPANDED_CODE_SIGN_IDENTITY\" -o runtime --timestamp=none --preserve-metadata=identifier,entitlements,flags --generate-entitlement-der {} \\;\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		24C0427A28D257AA00270C62 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				24409570297418ED00B8815F /* InnertubeClient.swift in Sources */,
 				24C0429A28D2602100270C62 /* String+Localized.swift in Sources */,
 				2432363B299026B7002DD2E4 /* VideoDetails.swift in Sources */,
-				2441E00E296AB0BE00763965 /* RegexUtil.swift in Sources */,
 				24C0429628D25C4800270C62 /* Notification+Name.swift in Sources */,
 				24C0428228D257AA00270C62 /* AppDelegate.swift in Sources */,
-				244095722974201000B8815F /* YouTubeWebPage.swift in Sources */,
-				24C042A428D2706A00270C62 /* Errors.swift in Sources */,
 				24C0428428D257AA00270C62 /* SceneDelegate.swift in Sources */,
 				24C0429828D25DEB00270C62 /* PlayerViewController.swift in Sources */,
 				246D53D32976914B00098B1B /* Dictionary+Convenience.swift in Sources */,
-				24C042A028D26A7F00270C62 /* YouTubeInfoExtractor.swift in Sources */,
+				24F503C829BBB2D70001CD8F /* YoutubeDL.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -341,7 +380,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = MZN9WUBPNG;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Vance/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -370,7 +409,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = MZN9WUBPNG;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Vance/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -414,6 +453,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		24D5AF9A29BA5B2D0060F8BF /* XCRemoteSwiftPackageReference "PythonKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/pvieito/PythonKit.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		24D5AF9B29BA5B2D0060F8BF /* PythonKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 24D5AF9A29BA5B2D0060F8BF /* XCRemoteSwiftPackageReference "PythonKit" */;
+			productName = PythonKit;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 24C0427628D257AA00270C62 /* Project object */;
 }

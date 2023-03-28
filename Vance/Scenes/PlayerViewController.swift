@@ -9,6 +9,8 @@
 import UIKit
 import AVKit
 import AVFoundation
+import Python
+import PythonKit
 
 class PlayerViewController: UIViewController {
     private var player: AVQueuePlayer?
@@ -28,7 +30,6 @@ class PlayerViewController: UIViewController {
     private lazy var scrollView: UIScrollView = {
         let view = UIScrollView()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.contentInset = UIEdgeInsets(top: 16.0, left: 16.0, bottom: 16.0, right: -16.0)
         return view
     }()
     private lazy var contentView: UIStackView = {
@@ -41,8 +42,6 @@ class PlayerViewController: UIViewController {
     private lazy var detailsContainer: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = .secondarySystemBackground
-        view.layer.cornerRadius = 20.0
         view.clipsToBounds = true
         view.isHidden = true
         return view
@@ -74,8 +73,6 @@ class PlayerViewController: UIViewController {
     private lazy var controlContainer: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = .secondarySystemBackground
-        view.layer.cornerRadius = 20.0
         view.clipsToBounds = true
         return view
     }()
@@ -173,10 +170,7 @@ class PlayerViewController: UIViewController {
     @objc
     private func handleOpenButtonTap(_ sender: UIButton) {
         view.endEditing(true)
-        guard
-            let urlString = linkTextField.text,
-            let url = URL(string: urlString)
-        else {
+        guard let url = linkTextField.text else {
             presentAlert(title: "Unable to load video".localized, message: "An error occurred".localized)
             return
         }
@@ -188,50 +182,46 @@ class PlayerViewController: UIViewController {
         guard let urlFromPasteboard = UIPasteboard.general.url else { return }
         linkTextField.text = urlFromPasteboard.absoluteString
         openButton.isEnabled = true
-        handleYouTubeUrl(urlFromPasteboard)
+        handleYouTubeUrl(urlFromPasteboard.absoluteString)
     }
     
-    private func handleYouTubeUrl(_ url: URL) {
+    private func handleYouTubeUrl(_ url: String) {
         Task {
+            guard let ytdl = YoutubeDL() else { return }
+            
             do {
-                let extractor = YouTubeInfoExtractor()
-                guard
-                    let page = YouTubeWebPage(videoURL: url),
-                    let html = try await page.load(),
-                    let details = extractor.extractInfo(from: html)
-                else {
-                    presentAlert(title: "Unable to load video".localized, message: "An error occurred".localized)
-                    return
-                }
+                guard let details = try ytdl.extractInfo(from: url) else { return }
+                
                 updateVideoDetails(with: details)
+                
                 var thumbnail: Data?
-                if let thumbnailURL = details.thumbnails?.first(where: { thumbnail in
-                    thumbnail.size.height == 480
-                })?.url {
+                if let thumbnailURLString = details.thumbnail, let thumbnailURL = URL(string: thumbnailURLString) {
                     thumbnail = await downloadThumbnail(from: thumbnailURL)
                 }
+                
                 playVideo(from: details, with: thumbnail)
-            } catch {
-                print(error.localizedDescription)
-                presentAlert(title: "Unable to load video".localized, message: "An error occurred".localized)
+            } catch let error {
+                print(#file, #line, error.localizedDescription)
             }
         }
     }
     
     @MainActor
     private func updateVideoDetails(with details: VideoDetails) {
-        guard
-            let title = details.title,
-            let viewCount = details.viewCount,
-            let author = details.author
-        else {
-            detailsContainer.isHidden = true
-            return
-        }
         detailsContainer.isHidden = false
-        titleLabel.text = title
-        viewsLabel.text = "\(viewCount) \("Views".localized)"
-        authorLabel.text = "👤 \(author)"
+        titleLabel.text = details.title
+        if let viewCount = details.viewCount {
+            viewsLabel.isHidden = false
+            viewsLabel.text = "\(viewCount) \("Views".localized)"
+        } else {
+            viewsLabel.isHidden = true
+        }
+        if let author = details.author {
+            authorLabel.isHidden = false
+            authorLabel.text = "👤 \(author)"
+        } else {
+            authorLabel.isHidden = true
+        }
     }
     
     private func downloadThumbnail(from url: URL) async -> Data? {
@@ -247,16 +237,6 @@ class PlayerViewController: UIViewController {
     private func playVideo(from details: VideoDetails, with thumbnail: Data?) {
         guard let player = player else { return }
         
-        var mediaUrl: URL?
-        
-        if details.isLiveStream {
-            mediaUrl = details.urls["livestream"]
-        } else {
-            mediaUrl = details.urls["format_medium"] ?? details.urls["adaptiveFormat_360p"]
-        }
-        
-        guard let url = mediaUrl else { return }
-        
         let session = AVAudioSession.sharedInstance()
         do {
             try session.setActive(true)
@@ -264,7 +244,8 @@ class PlayerViewController: UIViewController {
             print(error.localizedDescription)
         }
         
-        let item = AVPlayerItem(url: url)
+        let asset = AVURLAsset(url: details.url, options: ["AVURLAssetHTTPHeaderFieldsKey": details.headers])
+        let item = AVPlayerItem(asset: asset)
         
         var meta: [AVMutableMetadataItem] = []
         
@@ -272,11 +253,6 @@ class PlayerViewController: UIViewController {
         title.identifier = .commonIdentifierTitle
         title.value = (details.title ?? "YouTube video") as NSString
         meta.append(title)
-
-        let artist = AVMutableMetadataItem()
-        artist.identifier = .commonIdentifierArtist
-        artist.value = (details.author ?? "Vance") as NSString
-        meta.append(artist)
         
         if let thumbnail {
             let artwork = AVMutableMetadataItem()
@@ -291,8 +267,6 @@ class PlayerViewController: UIViewController {
         if player.canInsert(item, after: nil) {
             player.insert(item, after: nil)
         }
-        
-        print("Playing \(url.absoluteString)")
         
         if player.items().count > 1 {
             player.advanceToNextItem()
@@ -348,7 +322,7 @@ private extension PlayerViewController {
             scrollView.topAnchor.constraint(equalTo: videoContainer.bottomAnchor),
             scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-            scrollView.contentLayoutGuide.widthAnchor.constraint(equalTo: scrollView.widthAnchor, multiplier: 1.0, constant: -32.0),
+            scrollView.contentLayoutGuide.widthAnchor.constraint(equalTo: scrollView.widthAnchor, multiplier: 1.0),
             
             contentView.leadingAnchor.constraint(equalTo: scrollView.contentLayoutGuide.leadingAnchor),
             contentView.topAnchor.constraint(equalTo: scrollView.contentLayoutGuide.topAnchor),
