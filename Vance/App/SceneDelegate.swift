@@ -12,14 +12,6 @@ import AVFoundation
 class SceneDelegate: UIResponder {
     var window: UIWindow?
     
-    func checkPasteboardForUrlAndPostNotification() {
-        if UIPasteboard.general.hasURLs {
-            NotificationCenter.default.post(name: .urlIsAvailableFromPasteboard, object: self)
-        } else {
-            NotificationCenter.default.post(name: .urlIsUnavailableFromPasteboard, object: self)
-        }
-    }
-    
     func setupAudioSession() {
         let session = AVAudioSession.sharedInstance()
         do {
@@ -43,14 +35,6 @@ extension SceneDelegate: UIWindowSceneDelegate {
         window?.windowScene = windowScene
         setupAudioSession()
         openPlayerViewController()
-    }
-
-    func sceneDidBecomeActive(_ scene: UIScene) {
-        checkPasteboardForUrlAndPostNotification()
-    }
-
-    func sceneWillEnterForeground(_ scene: UIScene) {
-        checkPasteboardForUrlAndPostNotification()
     }
 }
 
