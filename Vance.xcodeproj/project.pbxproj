@@ -8,14 +8,17 @@
 
 /* Begin PBXBuildFile section */
 		2412EB2528DA34690080DC0F /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2412EB2728DA34690080DC0F /* Localizable.strings */; };
+		241E28EB2A4CA51F0032E179 /* VideoPlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 241E28EA2A4CA51F0032E179 /* VideoPlayerViewController.swift */; };
 		2432363B299026B7002DD2E4 /* VideoDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2432363A299026B7002DD2E4 /* VideoDetails.swift */; };
 		246D53D32976914B00098B1B /* Dictionary+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246D53D22976914B00098B1B /* Dictionary+Convenience.swift */; };
+		24953EC32A45F5C100237667 /* VideoPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24953EC22A45F5C100237667 /* VideoPlayerView.swift */; };
 		24C0428228D257AA00270C62 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24C0428128D257AA00270C62 /* AppDelegate.swift */; };
 		24C0428428D257AA00270C62 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24C0428328D257AA00270C62 /* SceneDelegate.swift */; };
 		24C0428B28D257AA00270C62 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 24C0428A28D257AA00270C62 /* Assets.xcassets */; };
 		24C0429628D25C4800270C62 /* Notification+Name.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24C0429528D25C4800270C62 /* Notification+Name.swift */; };
 		24C0429828D25DEB00270C62 /* PlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24C0429728D25DEB00270C62 /* PlayerViewController.swift */; };
 		24C0429A28D2602100270C62 /* String+Localized.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24C0429928D2602100270C62 /* String+Localized.swift */; };
+		24CA5D172A46398B00BC82EA /* UIImage+Circle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24CA5D162A46398B00BC82EA /* UIImage+Circle.swift */; };
 		24D0DB7629C1385200AC450E /* PythonModules in Resources */ = {isa = PBXBuildFile; fileRef = 24D0DB7529C1385200AC450E /* PythonModules */; };
 		24D5AF9C29BA5B2D0060F8BF /* PythonKit in Frameworks */ = {isa = PBXBuildFile; productRef = 24D5AF9B29BA5B2D0060F8BF /* PythonKit */; };
 		24D5AFA129BA5B960060F8BF /* Python.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24D5AFA029BA5B960060F8BF /* Python.xcframework */; };
@@ -27,8 +30,10 @@
 /* Begin PBXFileReference section */
 		2412EB2628DA34690080DC0F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		2412EB2828DA34A30080DC0F /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
+		241E28EA2A4CA51F0032E179 /* VideoPlayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPlayerViewController.swift; sourceTree = "<group>"; };
 		2432363A299026B7002DD2E4 /* VideoDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoDetails.swift; sourceTree = "<group>"; };
 		246D53D22976914B00098B1B /* Dictionary+Convenience.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Dictionary+Convenience.swift"; sourceTree = "<group>"; };
+		24953EC22A45F5C100237667 /* VideoPlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPlayerView.swift; sourceTree = "<group>"; };
 		24C0427E28D257AA00270C62 /* Vance.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Vance.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		24C0428128D257AA00270C62 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		24C0428328D257AA00270C62 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -37,6 +42,7 @@
 		24C0429528D25C4800270C62 /* Notification+Name.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Notification+Name.swift"; sourceTree = "<group>"; };
 		24C0429728D25DEB00270C62 /* PlayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerViewController.swift; sourceTree = "<group>"; };
 		24C0429928D2602100270C62 /* String+Localized.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Localized.swift"; sourceTree = "<group>"; };
+		24CA5D162A46398B00BC82EA /* UIImage+Circle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Circle.swift"; sourceTree = "<group>"; };
 		24D0DB7529C1385200AC450E /* PythonModules */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = folder; path = PythonModules; sourceTree = SOURCE_ROOT; };
 		24D5AFA029BA5B960060F8BF /* Python.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = Python.xcframework; sourceTree = "<group>"; };
 		24D5B5FE29BA5C0F0060F8BF /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
@@ -64,6 +70,7 @@
 				24C0429528D25C4800270C62 /* Notification+Name.swift */,
 				24C0429928D2602100270C62 /* String+Localized.swift */,
 				246D53D22976914B00098B1B /* Dictionary+Convenience.swift */,
+				24CA5D162A46398B00BC82EA /* UIImage+Circle.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -114,6 +121,8 @@
 				241ED9C4298AE83B00BBB1D9 /* Extensions */,
 				2432363929901B84002DD2E4 /* Scenes */,
 				24F503C729BBB2D70001CD8F /* YoutubeDL.swift */,
+				24953EC22A45F5C100237667 /* VideoPlayerView.swift */,
+				241E28EA2A4CA51F0032E179 /* VideoPlayerViewController.swift */,
 				2432363A299026B7002DD2E4 /* VideoDetails.swift */,
 				24C0428A28D257AA00270C62 /* Assets.xcassets */,
 				2412EB2728DA34690080DC0F /* Localizable.strings */,
@@ -234,13 +243,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				24C0429A28D2602100270C62 /* String+Localized.swift in Sources */,
+				24CA5D172A46398B00BC82EA /* UIImage+Circle.swift in Sources */,
 				2432363B299026B7002DD2E4 /* VideoDetails.swift in Sources */,
 				24C0429628D25C4800270C62 /* Notification+Name.swift in Sources */,
 				24C0428228D257AA00270C62 /* AppDelegate.swift in Sources */,
 				24C0428428D257AA00270C62 /* SceneDelegate.swift in Sources */,
 				24C0429828D25DEB00270C62 /* PlayerViewController.swift in Sources */,
 				246D53D32976914B00098B1B /* Dictionary+Convenience.swift in Sources */,
+				241E28EB2A4CA51F0032E179 /* VideoPlayerViewController.swift in Sources */,
 				24F503C829BBB2D70001CD8F /* YoutubeDL.swift in Sources */,
+				24953EC32A45F5C100237667 /* VideoPlayerView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -314,6 +326,7 @@
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				OTHER_SWIFT_FLAGS = "";
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -368,6 +381,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
+				OTHER_SWIFT_FLAGS = "";
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
@@ -387,17 +401,19 @@
 				INFOPLIST_FILE = Vance/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
+				OTHER_SWIFT_FLAGS = "-DCUSTOM_PLAYER";
 				PRODUCT_BUNDLE_IDENTIFIER = net.prismade.Vance;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -416,17 +432,19 @@
 				INFOPLIST_FILE = Vance/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
+				OTHER_SWIFT_FLAGS = "-DCUSTOM_PLAYER";
 				PRODUCT_BUNDLE_IDENTIFIER = net.prismade.Vance;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;

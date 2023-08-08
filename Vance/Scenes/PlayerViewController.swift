@@ -14,13 +14,20 @@ import PythonKit
 
 class PlayerViewController: UIViewController {
     private var player: AVQueuePlayer?
+
+#if CUSTOM_PLAYER
+    private lazy var playerViewController: VideoPlayerViewController = {
+        let viewController = VideoPlayerViewController()
+        viewController.view.translatesAutoresizingMaskIntoConstraints = false
+        return viewController
+    }()
+#else
     private lazy var playerViewController: AVPlayerViewController = {
         let viewController = AVPlayerViewController()
         viewController.view.translatesAutoresizingMaskIntoConstraints = false
-        viewController.exitsFullScreenWhenPlaybackEnds = true
-        viewController.canStartPictureInPictureAutomaticallyFromInline = true
         return viewController
     }()
+#endif
     private lazy var videoContainer: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -245,8 +252,9 @@ class PlayerViewController: UIViewController {
         }
         
         let asset = AVURLAsset(url: details.url, options: ["AVURLAssetHTTPHeaderFieldsKey": details.headers])
-        let item = AVPlayerItem(asset: asset)
-        
+        let item = AVPlayerItem(asset: asset, automaticallyLoadedAssetKeys: [.tracks, .duration, .commonMetadata])
+
+#if !CUSTOM_PLAYER
         var meta: [AVMutableMetadataItem] = []
         
         let title = AVMutableMetadataItem()
@@ -263,7 +271,8 @@ class PlayerViewController: UIViewController {
         }
         
         item.externalMetadata = meta
-        
+#endif
+
         if player.canInsert(item, after: nil) {
             player.insert(item, after: nil)
         }
