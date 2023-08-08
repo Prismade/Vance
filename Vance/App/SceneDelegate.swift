@@ -43,9 +43,12 @@ extension SceneDelegate: UIWindowSceneDelegate {
         window?.windowScene = windowScene
         setupAudioSession()
         openPlayerViewController()
+    }
+
+    func sceneDidBecomeActive(_ scene: UIScene) {
         checkPasteboardForUrlAndPostNotification()
     }
-    
+
     func sceneWillEnterForeground(_ scene: UIScene) {
         checkPasteboardForUrlAndPostNotification()
     }
