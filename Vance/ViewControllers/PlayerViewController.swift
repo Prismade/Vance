@@ -33,14 +33,6 @@ class PlayerViewController: UIViewController {
         view.backgroundColor = .black
         return view
     }()
-    private lazy var playlistButton: UIButton = {
-        var configuration = UIButton.Configuration.gray()
-        configuration.title = "Queue".localized
-        let button = UIButton(configuration: configuration)
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.addTarget(self, action: #selector(handlePlaylistButtonTap(_:)), for: .touchUpInside)
-        return button
-    }()
 
     override var preferredStatusBarStyle: UIStatusBarStyle {
         .lightContent
@@ -75,13 +67,6 @@ class PlayerViewController: UIViewController {
             playerControlsViewController.view.trailingAnchor.constraint(equalTo: view.trailingAnchor),
         ])
         playerControlsViewController.didMove(toParent: self)
-
-        view.addSubview(playlistButton)
-        NSLayoutConstraint.activate([
-            playlistButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16.0),
-            playlistButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16.0),
-            playlistButton.topAnchor.constraint(equalTo: playerControlsViewController.view.bottomAnchor, constant: 8.0)
-        ])
     }
 
     override func viewDidLoad() {
@@ -98,16 +83,17 @@ class PlayerViewController: UIViewController {
         playerControlsViewController.player = player
     }
 
-    @objc
-    func handlePlaylistButtonTap(_ sender: UIButton) {}
-
     private func handleYouTubeUrl(_ url: String) {
         Task {
             guard let ytdl = YoutubeDL() else { return }
 
             do {
                 guard let details = try ytdl.extractInfo(from: url) else { return }
-                playVideo(from: details, with: nil)
+                var thumbnail: Data?
+                if let thumbnailURLString = details.thumbnail, let thumbnailURL = URL(string: thumbnailURLString) {
+                    thumbnail = await downloadThumbnail(from: thumbnailURL)
+                }
+                playVideo(from: details, with: thumbnail)
             } catch let error {
                 print(#file, #line, error.localizedDescription)
             }
@@ -166,5 +152,9 @@ extension PlayerViewController: VideoPlayerControlsDelegate {
     func addTapped(urlString: String?) {
         guard let urlString else { return }
         handleYouTubeUrl(urlString)
+    }
+
+    func playlistTapped() {
+        
     }
 }

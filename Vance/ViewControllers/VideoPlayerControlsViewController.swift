@@ -11,6 +11,7 @@ import AVFoundation
 
 protocol VideoPlayerControlsDelegate: AnyObject {
     func addTapped(urlString: String?)
+    func playlistTapped()
 }
 
 class VideoPlayerControlsViewController: UIViewController {
@@ -34,6 +35,14 @@ class VideoPlayerControlsViewController: UIViewController {
         button.addTarget(self, action: #selector(handleNextButtonTap(_:)), for: .touchUpInside)
         return button
     }()
+    private lazy var queueButton: UIButton = {
+        var configuration = UIButton.Configuration.gray()
+        configuration.title = "Queue".localized
+        let button = UIButton(configuration: configuration)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.addTarget(self, action: #selector(handlePlaylistButtonTap(_:)), for: .touchUpInside)
+        return button
+    }()
     private lazy var addButton: UIButton = {
         var configuration = UIButton.Configuration.gray()
         let button = UIButton(configuration: configuration)
@@ -42,30 +51,29 @@ class VideoPlayerControlsViewController: UIViewController {
         button.addTarget(self, action: #selector(handleAddButtonTap(_:)), for: .touchUpInside)
         return button
     }()
+    private lazy var contentStack: UIStackView = {
+        let view = UIStackView(arrangedSubviews: [previousButton, nextButton, queueButton, addButton])
+        view.spacing = 8.0
+        view.distribution = .fillProportionally
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
 
     override func loadView() {
         view = UIView()
         view.backgroundColor = .clear
 
-        view.addSubview(previousButton)
+        view.addSubview(contentStack)
         NSLayoutConstraint.activate([
-            previousButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16.0),
-            previousButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 8.0),
-            previousButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -8.0)
+            contentStack.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16.0),
+            contentStack.topAnchor.constraint(equalTo: view.topAnchor, constant: 8.0),
+            contentStack.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16.0),
+            contentStack.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 8.0)
         ])
 
-        view.addSubview(nextButton)
         NSLayoutConstraint.activate([
-            nextButton.leadingAnchor.constraint(equalTo: previousButton.trailingAnchor, constant: 8.0),
-            nextButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 8.0),
-            nextButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -8.0)
-        ])
-
-        view.addSubview(addButton)
-        NSLayoutConstraint.activate([
-            addButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16.0),
-            addButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 8.0),
-            addButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -8.0)
+            previousButton.widthAnchor.constraint(equalTo: nextButton.widthAnchor, multiplier: 1.0),
+            previousButton.widthAnchor.constraint(equalTo: addButton.widthAnchor, multiplier: 1.0)
         ])
     }
 
@@ -76,6 +84,9 @@ class VideoPlayerControlsViewController: UIViewController {
     private func handleNextButtonTap(_ sender: UIButton) {
         player?.advanceToNextItem()
     }
+
+    @objc
+    func handlePlaylistButtonTap(_ sender: UIButton) {}
 
     @objc func handleAddButtonTap(_ sender: UIButton) {
         let alertController = UIAlertController(
