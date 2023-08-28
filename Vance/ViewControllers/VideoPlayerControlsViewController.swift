@@ -24,7 +24,9 @@ class VideoPlayerControlsViewController: UIViewController {
         let button = UIButton(configuration: configuration)
         button.translatesAutoresizingMaskIntoConstraints = false
         button.addTarget(self, action: #selector(handlePrevButtonTap(_:)), for: .touchUpInside)
-        button.isEnabled = false
+        NSLayoutConstraint.activate([
+            button.widthAnchor.constraint(equalToConstant: 40.0)
+        ])
         return button
     }()
     private lazy var nextButton: UIButton = {
@@ -33,6 +35,9 @@ class VideoPlayerControlsViewController: UIViewController {
         let button = UIButton(configuration: configuration)
         button.translatesAutoresizingMaskIntoConstraints = false
         button.addTarget(self, action: #selector(handleNextButtonTap(_:)), for: .touchUpInside)
+        NSLayoutConstraint.activate([
+            button.widthAnchor.constraint(equalToConstant: 40.0)
+        ])
         return button
     }()
     private lazy var queueButton: UIButton = {
@@ -41,6 +46,9 @@ class VideoPlayerControlsViewController: UIViewController {
         let button = UIButton(configuration: configuration)
         button.translatesAutoresizingMaskIntoConstraints = false
         button.addTarget(self, action: #selector(handlePlaylistButtonTap(_:)), for: .touchUpInside)
+        NSLayoutConstraint.activate([
+            button.widthAnchor.constraint(equalToConstant: 49.0)
+        ])
         return button
     }()
     private lazy var addButton: UIButton = {
