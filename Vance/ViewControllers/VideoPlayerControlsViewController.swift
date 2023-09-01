@@ -9,14 +9,8 @@
 import UIKit
 import AVFoundation
 
-protocol VideoPlayerControlsDelegate: AnyObject {
-    func addTapped(urlString: String?)
-    func playlistTapped()
-}
-
-class VideoPlayerControlsViewController: UIViewController {
-    weak var player: AVQueuePlayer?
-    weak var delegate: VideoPlayerControlsDelegate?
+final class VideoPlayerControlsViewController: UIViewController {
+    weak var model: PlayerModel?
 
     private lazy var previousButton: UIButton = {
         var configuration = UIButton.Configuration.gray()
@@ -46,9 +40,6 @@ class VideoPlayerControlsViewController: UIViewController {
         let button = UIButton(configuration: configuration)
         button.translatesAutoresizingMaskIntoConstraints = false
         button.addTarget(self, action: #selector(handlePlaylistButtonTap(_:)), for: .touchUpInside)
-        NSLayoutConstraint.activate([
-            button.widthAnchor.constraint(equalToConstant: 49.0)
-        ])
         return button
     }()
     private lazy var addButton: UIButton = {
@@ -62,7 +53,6 @@ class VideoPlayerControlsViewController: UIViewController {
     private lazy var contentStack: UIStackView = {
         let view = UIStackView(arrangedSubviews: [previousButton, nextButton, queueButton, addButton])
         view.spacing = 8.0
-        view.distribution = .fillProportionally
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
@@ -80,37 +70,50 @@ class VideoPlayerControlsViewController: UIViewController {
         ])
 
         NSLayoutConstraint.activate([
-            previousButton.widthAnchor.constraint(equalTo: nextButton.widthAnchor, multiplier: 1.0),
             previousButton.widthAnchor.constraint(equalTo: addButton.widthAnchor, multiplier: 1.0)
         ])
     }
 
     @objc
-    private func handlePrevButtonTap(_ sender: UIButton) {}
-
-    @objc
-    private func handleNextButtonTap(_ sender: UIButton) {
-        player?.advanceToNextItem()
+    private func handlePrevButtonTap(_ sender: UIButton) {
+        model?.advanceToPrevItem()
     }
 
     @objc
-    func handlePlaylistButtonTap(_ sender: UIButton) {}
+    private func handleNextButtonTap(_ sender: UIButton) {
+        model?.advanceToNextItem()
+    }
+
+    @objc
+    func handlePlaylistButtonTap(_ sender: UIButton) {
+        let queueViewController = QueueViewController(style: .plain)
+        queueViewController.model = model
+        let navigationController = UINavigationController(rootViewController: queueViewController)
+        navigationController.modalPresentationStyle = .pageSheet
+        if let presentationController = navigationController.sheetPresentationController {
+            presentationController.detents = [.medium(), .large()]
+            presentationController.prefersGrabberVisible = true
+        }
+        present(navigationController, animated: true)
+    }
 
     @objc func handleAddButtonTap(_ sender: UIButton) {
         let alertController = UIAlertController(
             title: "Add video to queue".localized,
-            message: "Paste a link to a YouTube video here and hit the open button".localized,
+            message: "Paste a link to a YouTube video here and hit the add button".localized,
             preferredStyle: .alert)
         alertController.addTextField { textField in
             textField.clearButtonMode = .whileEditing
             textField.keyboardType = .URL
+            textField.placeholder = "https://youtu.be/..."
         }
         alertController.addAction(
             UIAlertAction(
-                title: "Open".localized,
+                title: "Add".localized,
                 style: .default,
                 handler: { _ in
-                    self.delegate?.addTapped(urlString: alertController.textFields!.first!.text)
+                    guard let urlText = alertController.textFields!.first!.text else { return }
+                    self.model?.addVideoToQueue(fromURL: urlText)
                 }))
         alertController.addAction(UIAlertAction(title: "Cancel".localized, style: .cancel))
         alertController.view.tintColor = UIColor(named: "AccentColor")

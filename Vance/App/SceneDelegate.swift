@@ -9,7 +9,7 @@
 import UIKit
 import AVFoundation
 
-class SceneDelegate: UIResponder {
+final class SceneDelegate: UIResponder {
     var window: UIWindow?
     
     func setupAudioSession() {
@@ -22,7 +22,7 @@ class SceneDelegate: UIResponder {
     }
     
     func openPlayerViewController() {
-        let viewController = PlayerViewController()
+        let viewController = PlayerViewController(model: PlayerModel())
         window?.rootViewController = viewController
         window?.makeKeyAndVisible()
     }

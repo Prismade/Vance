@@ -95,7 +95,8 @@ final class YoutubeDL {
             title: title,
             description: description,
             author: author,
-            thumbnail: thumbnail,
+            thumbnailURL: URL(string: thumbnail ?? ""),
+            thumbnailData: nil,
             viewCount: viewCount)
         
         return details

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class VideoDetailsViewController: UIViewController {
+final class VideoDetailsViewController: UIViewController {
     private lazy var titleLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false

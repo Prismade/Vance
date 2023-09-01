@@ -17,11 +17,11 @@
 // MARK: - Add video alert
 
 "Add video to queue" = "Add video to playlist";
-"Paste a link to a YouTube video here and hit the open button" = "Paste a link to a YouTube video here and hit the open button";
-"Open" = "Open";
+"Paste a link to a YouTube video here and hit the add button" = "Paste a link to a YouTube video here and hit the add button";
+"Add" = "Add";
 "Use pasteboard" = "Use pasteboard";
 
 // MARK: - Queue
 
 "Queue" = "Queue";
-
+"Clear" = "Clear";

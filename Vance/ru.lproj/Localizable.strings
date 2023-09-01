@@ -17,10 +17,11 @@
 // MARK: - Add video alert
 
 "Add video to queue" = "Добавьте видео в очередь";
-"Paste a link to a YouTube video here and hit the open button" = "Вставьте ссылку на YouTube-видео и нажмите \"Открыть\"";
-"Open" = "Открыть";
+"Paste a link to a YouTube video here and hit the add button" = "Вставьте ссылку на YouTube-видео и нажмите \"Добавить\"";
+"Add" = "Добавить";
 "Use pasteboard" = "Использовать буфер обмена";
 
 // MARK: - Queue
 
 "Queue" = "Очередь";
+"Clear" = "Очистить";
