@@ -11,7 +11,7 @@ import Python
 import PythonKit
 
 @main
-class AppDelegate: UIResponder, UIApplicationDelegate {
+final class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationDidFinishLaunching(_ application: UIApplication) {
         guard let stdLibPath = Bundle.main.path(forResource: "python-stdlib", ofType: nil) else { return }
         guard let libDynloadPath = Bundle.main.path(forResource: "python-stdlib/lib-dynload", ofType: nil) else { return }

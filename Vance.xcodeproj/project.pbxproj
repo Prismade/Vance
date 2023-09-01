@@ -7,13 +7,17 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2402A1E12A9D2891002E263D /* QueueViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2402A1E02A9D2891002E263D /* QueueViewController.swift */; };
+		2402A1E32A9D2D40002E263D /* QueueItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2402A1E22A9D2D40002E263D /* QueueItemTableViewCell.swift */; };
 		2412EB2528DA34690080DC0F /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2412EB2728DA34690080DC0F /* Localizable.strings */; };
+		242127F02A829BF500B2A362 /* VideoDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 242127EF2A829BF500B2A362 /* VideoDetailsViewController.swift */; };
 		2432363B299026B7002DD2E4 /* VideoDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2432363A299026B7002DD2E4 /* VideoDetails.swift */; };
+		2456D74E2A82B5D4001EEF96 /* VideoPlayerControlsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2456D74D2A82B5D4001EEF96 /* VideoPlayerControlsViewController.swift */; };
 		246D53D32976914B00098B1B /* Dictionary+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246D53D22976914B00098B1B /* Dictionary+Convenience.swift */; };
+		249C8B1C2A9FFD850066D73C /* PlayerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249C8B1B2A9FFD850066D73C /* PlayerModel.swift */; };
 		24C0428228D257AA00270C62 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24C0428128D257AA00270C62 /* AppDelegate.swift */; };
 		24C0428428D257AA00270C62 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24C0428328D257AA00270C62 /* SceneDelegate.swift */; };
 		24C0428B28D257AA00270C62 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 24C0428A28D257AA00270C62 /* Assets.xcassets */; };
-		24C0429628D25C4800270C62 /* Notification+Name.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24C0429528D25C4800270C62 /* Notification+Name.swift */; };
 		24C0429828D25DEB00270C62 /* PlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24C0429728D25DEB00270C62 /* PlayerViewController.swift */; };
 		24C0429A28D2602100270C62 /* String+Localized.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24C0429928D2602100270C62 /* String+Localized.swift */; };
 		24D0DB7629C1385200AC450E /* PythonModules in Resources */ = {isa = PBXBuildFile; fileRef = 24D0DB7529C1385200AC450E /* PythonModules */; };
@@ -25,16 +29,20 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2402A1E02A9D2891002E263D /* QueueViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QueueViewController.swift; sourceTree = "<group>"; };
+		2402A1E22A9D2D40002E263D /* QueueItemTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QueueItemTableViewCell.swift; sourceTree = "<group>"; };
 		2412EB2628DA34690080DC0F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		2412EB2828DA34A30080DC0F /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
+		242127EF2A829BF500B2A362 /* VideoDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoDetailsViewController.swift; sourceTree = "<group>"; };
 		2432363A299026B7002DD2E4 /* VideoDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoDetails.swift; sourceTree = "<group>"; };
+		2456D74D2A82B5D4001EEF96 /* VideoPlayerControlsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPlayerControlsViewController.swift; sourceTree = "<group>"; };
 		246D53D22976914B00098B1B /* Dictionary+Convenience.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Dictionary+Convenience.swift"; sourceTree = "<group>"; };
+		249C8B1B2A9FFD850066D73C /* PlayerModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerModel.swift; sourceTree = "<group>"; };
 		24C0427E28D257AA00270C62 /* Vance.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Vance.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		24C0428128D257AA00270C62 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		24C0428328D257AA00270C62 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		24C0428A28D257AA00270C62 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		24C0428F28D257AA00270C62 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		24C0429528D25C4800270C62 /* Notification+Name.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Notification+Name.swift"; sourceTree = "<group>"; };
 		24C0429728D25DEB00270C62 /* PlayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerViewController.swift; sourceTree = "<group>"; };
 		24C0429928D2602100270C62 /* String+Localized.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Localized.swift"; sourceTree = "<group>"; };
 		24D0DB7529C1385200AC450E /* PythonModules */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = folder; path = PythonModules; sourceTree = SOURCE_ROOT; };
@@ -61,7 +69,6 @@
 		241ED9C4298AE83B00BBB1D9 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				24C0429528D25C4800270C62 /* Notification+Name.swift */,
 				24C0429928D2602100270C62 /* String+Localized.swift */,
 				246D53D22976914B00098B1B /* Dictionary+Convenience.swift */,
 			);
@@ -77,12 +84,15 @@
 			path = App;
 			sourceTree = "<group>";
 		};
-		2432363929901B84002DD2E4 /* Scenes */ = {
+		2432363929901B84002DD2E4 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
 				24C0429728D25DEB00270C62 /* PlayerViewController.swift */,
+				242127EF2A829BF500B2A362 /* VideoDetailsViewController.swift */,
+				2456D74D2A82B5D4001EEF96 /* VideoPlayerControlsViewController.swift */,
+				2402A1E02A9D2891002E263D /* QueueViewController.swift */,
 			);
-			path = Scenes;
+			path = ViewControllers;
 			sourceTree = "<group>";
 		};
 		24C0427528D257AA00270C62 = {
@@ -112,8 +122,10 @@
 				24D5AFA029BA5B960060F8BF /* Python.xcframework */,
 				2432363829901B6E002DD2E4 /* App */,
 				241ED9C4298AE83B00BBB1D9 /* Extensions */,
-				2432363929901B84002DD2E4 /* Scenes */,
+				2432363929901B84002DD2E4 /* ViewControllers */,
+				249C8B1B2A9FFD850066D73C /* PlayerModel.swift */,
 				24F503C729BBB2D70001CD8F /* YoutubeDL.swift */,
+				2402A1E22A9D2D40002E263D /* QueueItemTableViewCell.swift */,
 				2432363A299026B7002DD2E4 /* VideoDetails.swift */,
 				24C0428A28D257AA00270C62 /* Assets.xcassets */,
 				2412EB2728DA34690080DC0F /* Localizable.strings */,
@@ -162,7 +174,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1400;
-				LastUpgradeCheck = 1400;
+				LastUpgradeCheck = 1500;
 				ORGANIZATIONNAME = "Egor and the fucked up";
 				TargetAttributes = {
 					24C0427D28D257AA00270C62 = {
@@ -233,11 +245,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2402A1E12A9D2891002E263D /* QueueViewController.swift in Sources */,
+				242127F02A829BF500B2A362 /* VideoDetailsViewController.swift in Sources */,
 				24C0429A28D2602100270C62 /* String+Localized.swift in Sources */,
 				2432363B299026B7002DD2E4 /* VideoDetails.swift in Sources */,
-				24C0429628D25C4800270C62 /* Notification+Name.swift in Sources */,
 				24C0428228D257AA00270C62 /* AppDelegate.swift in Sources */,
 				24C0428428D257AA00270C62 /* SceneDelegate.swift in Sources */,
+				2456D74E2A82B5D4001EEF96 /* VideoPlayerControlsViewController.swift in Sources */,
+				249C8B1C2A9FFD850066D73C /* PlayerModel.swift in Sources */,
+				2402A1E32A9D2D40002E263D /* QueueItemTableViewCell.swift in Sources */,
 				24C0429828D25DEB00270C62 /* PlayerViewController.swift in Sources */,
 				246D53D32976914B00098B1B /* Dictionary+Convenience.swift in Sources */,
 				24F503C829BBB2D70001CD8F /* YoutubeDL.swift in Sources */,
@@ -263,6 +279,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
@@ -324,6 +341,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;

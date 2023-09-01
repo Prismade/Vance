@@ -6,14 +6,22 @@
   Copyright © 2022 Egor and the fucked up. All rights reserved.
 */
 
-"Unable to load video" = "Unable to load video";
-"Unable to load stream" = "Unable to load stream";
-"An error occurred" = "An error occurred";
-"Can't find link for the video file on server" = "Can't find link for the video file on server";
-"Can't find link for the stream playlist on server" = "Can't find link for the stream playlist on server";
-"Paste a link to a YouTube video here and hit the open button" = "Paste a link to a YouTube video here and hit the open button";
-"Open" = "Open";
-"Open (Stream)" = "Open (Stream)";
-"Use pasteboard" = "Use pasteboard";
-"Use pasteboard (Stream)" = "Use pasteboard (Stream)";
+// MARK: - Generic
+
+"Cancel" = "Cancel";
+
+// MARK: - Video details
+
 "Views" = "views";
+
+// MARK: - Add video alert
+
+"Add video to queue" = "Add video to playlist";
+"Paste a link to a YouTube video here and hit the add button" = "Paste a link to a YouTube video here and hit the add button";
+"Add" = "Add";
+"Use pasteboard" = "Use pasteboard";
+
+// MARK: - Queue
+
+"Queue" = "Queue";
+"Clear" = "Clear";

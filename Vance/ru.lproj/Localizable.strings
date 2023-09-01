@@ -6,14 +6,22 @@
   Copyright © 2022 Egor and the fucked up. All rights reserved.
 */
 
-"Unable to load video" = "Не удалось загрузить видео";
-"Unable to load stream" = "Не удалось загрузить стрим";
-"An error occurred" = "Произошла ошибка";
-"Can't find link for the video file on server" = "Не удалось найти ссылку на видео-файл на сервере";
-"Can't find link for the stream playlist on server" = "Не удалось найти плейлист стрима на сервере";
-"Paste a link to a YouTube video here and hit the open button" = "Вставьте ссылку на YouTube-видео и нажмите \"Открыть\"";
-"Open" = "Открыть";
-"Open (Stream)" = "Открыть (стрим)";
-"Use pasteboard" = "Использовать буфер обмена";
-"Use pasteboard (Stream)" = "Использовать буфер обмена (стрим)";
+// MARK: - Generic
+
+"Cancel" = "Отмена";
+
+// MARK: - Video details
+
 "Views" = "просмотров";
+
+// MARK: - Add video alert
+
+"Add video to queue" = "Добавьте видео в очередь";
+"Paste a link to a YouTube video here and hit the add button" = "Вставьте ссылку на YouTube-видео и нажмите \"Добавить\"";
+"Add" = "Добавить";
+"Use pasteboard" = "Использовать буфер обмена";
+
+// MARK: - Queue
+
+"Queue" = "Очередь";
+"Clear" = "Очистить";
