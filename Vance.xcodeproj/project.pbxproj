@@ -19,7 +19,6 @@
 		24C0428428D257AA00270C62 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24C0428328D257AA00270C62 /* SceneDelegate.swift */; };
 		24C0428B28D257AA00270C62 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 24C0428A28D257AA00270C62 /* Assets.xcassets */; };
 		24C0429828D25DEB00270C62 /* PlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24C0429728D25DEB00270C62 /* PlayerViewController.swift */; };
-		24C0429A28D2602100270C62 /* String+Localized.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24C0429928D2602100270C62 /* String+Localized.swift */; };
 		24D0DB7629C1385200AC450E /* PythonModules in Resources */ = {isa = PBXBuildFile; fileRef = 24D0DB7529C1385200AC450E /* PythonModules */; };
 		24D5AF9C29BA5B2D0060F8BF /* PythonKit in Frameworks */ = {isa = PBXBuildFile; productRef = 24D5AF9B29BA5B2D0060F8BF /* PythonKit */; };
 		24D5AFA129BA5B960060F8BF /* Python.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24D5AFA029BA5B960060F8BF /* Python.xcframework */; };
@@ -43,7 +42,6 @@
 		24C0428A28D257AA00270C62 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		24C0428F28D257AA00270C62 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		24C0429728D25DEB00270C62 /* PlayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerViewController.swift; sourceTree = "<group>"; };
-		24C0429928D2602100270C62 /* String+Localized.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Localized.swift"; sourceTree = "<group>"; };
 		24D0DB7529C1385200AC450E /* PythonModules */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = folder; path = PythonModules; sourceTree = SOURCE_ROOT; };
 		24D5AFA029BA5B960060F8BF /* Python.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = Python.xcframework; sourceTree = "<group>"; };
 		24D5B5FE29BA5C0F0060F8BF /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
@@ -68,7 +66,6 @@
 		241ED9C4298AE83B00BBB1D9 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				24C0429928D2602100270C62 /* String+Localized.swift */,
 				246D53D22976914B00098B1B /* Dictionary+Convenience.swift */,
 			);
 			path = Extensions;
@@ -246,7 +243,6 @@
 			files = (
 				2402A1E12A9D2891002E263D /* QueueViewController.swift in Sources */,
 				242127F02A829BF500B2A362 /* VideoDetailsViewController.swift in Sources */,
-				24C0429A28D2602100270C62 /* String+Localized.swift in Sources */,
 				2432363B299026B7002DD2E4 /* VideoDetails.swift in Sources */,
 				24C0428228D257AA00270C62 /* AppDelegate.swift in Sources */,
 				24C0428428D257AA00270C62 /* SceneDelegate.swift in Sources */,

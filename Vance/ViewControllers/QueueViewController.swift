@@ -15,8 +15,8 @@ final class QueueViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = "Queue".localized
-        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Clear".localized, style: .plain, target: self, action: #selector(handleClearButtonTap(_:)))
+        title = NSLocalizedString("Queue", comment: "")
+        navigationItem.leftBarButtonItem = UIBarButtonItem(title: NSLocalizedString("Clear", comment: ""), style: .plain, target: self, action: #selector(handleClearButtonTap(_:)))
         navigationItem.leftBarButtonItem?.isEnabled = (model?.queue.count ?? 0) > 1
         tableView.rowHeight = 96.0
         tableView.register(QueueItemTableViewCell.self, forCellReuseIdentifier: "QueueItemTableViewCell")
@@ -48,7 +48,7 @@ final class QueueViewController: UITableViewController {
             let item = model.queue[indexPath.row]
             itemCell?.titleLabel.text = item.title
             itemCell?.channelNameLabel.text = item.author
-            itemCell?.videoMetaLabel.text = "\(item.viewCount ?? "?") \("views".localized)"
+            itemCell?.videoMetaLabel.text = "\(item.viewCount ?? "?") \(NSLocalizedString("Views", comment: ""))"
             if let data = item.thumbnailData {
                 itemCell?.thumbnailImage.image = UIImage(data: data)
             }

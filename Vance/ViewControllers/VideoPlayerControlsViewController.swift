@@ -36,7 +36,7 @@ final class VideoPlayerControlsViewController: UIViewController {
     }()
     private lazy var queueButton: UIButton = {
         var configuration = UIButton.Configuration.gray()
-        configuration.title = "Queue".localized
+        configuration.title = NSLocalizedString("Queue", comment: "")
         let button = UIButton(configuration: configuration)
         button.translatesAutoresizingMaskIntoConstraints = false
         button.addTarget(self, action: #selector(handlePlaylistButtonTap(_:)), for: .touchUpInside)
@@ -99,8 +99,8 @@ final class VideoPlayerControlsViewController: UIViewController {
 
     @objc func handleAddButtonTap(_ sender: UIButton) {
         let alertController = UIAlertController(
-            title: "Add video to queue".localized,
-            message: "Paste a link to a YouTube video here and hit the add button".localized,
+            title: NSLocalizedString("Add video to queue", comment: ""),
+            message: NSLocalizedString("Paste a link to a YouTube video here and hit the add button", comment: ""),
             preferredStyle: .alert)
         alertController.addTextField { textField in
             textField.clearButtonMode = .whileEditing
@@ -109,13 +109,13 @@ final class VideoPlayerControlsViewController: UIViewController {
         }
         alertController.addAction(
             UIAlertAction(
-                title: "Add".localized,
+                title: NSLocalizedString("Add", comment: ""),
                 style: .default,
                 handler: { _ in
                     guard let urlText = alertController.textFields!.first!.text else { return }
                     self.model?.addVideoToQueue(fromURL: urlText)
                 }))
-        alertController.addAction(UIAlertAction(title: "Cancel".localized, style: .cancel))
+        alertController.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel))
         alertController.view.tintColor = UIColor(named: "AccentColor")
         present(alertController, animated: true)
     }

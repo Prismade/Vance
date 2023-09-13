@@ -65,7 +65,7 @@ final class VideoDetailsViewController: UIViewController {
         titleLabel.text = details.title
         titleLabel.isHidden = details.title == nil
 
-        viewsLabel.text = "\(details.viewCount ?? "") \("Views".localized)"
+        viewsLabel.text = "\(details.viewCount ?? "") \(NSLocalizedString("Views", comment: ""))"
         viewsLabel.isHidden = details.viewCount == nil
 
         channelLabel.text = "👤 \(details.author ?? "")"
