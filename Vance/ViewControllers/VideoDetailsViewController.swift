@@ -9,6 +9,7 @@
 import UIKit
 
 final class VideoDetailsViewController: UIViewController {
+    weak var model: PlayerModel?
     private lazy var titleLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -33,6 +34,10 @@ final class VideoDetailsViewController: UIViewController {
         label.textColor = .label
         return label
     }()
+
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
 
     override func loadView() {
         view = UIView()
@@ -61,6 +66,11 @@ final class VideoDetailsViewController: UIViewController {
         ])
     }
 
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        NotificationCenter.default.addObserver(self, selector: #selector(handleUpdateVideoDetailsNotification(_:)), name: NSNotification.Name("ShouldUpdateVideoDetails"), object: nil)
+    }
+
     func update(details: VideoDetails) {
         titleLabel.text = details.title
         titleLabel.isHidden = details.title == nil
@@ -70,5 +80,11 @@ final class VideoDetailsViewController: UIViewController {
 
         channelLabel.text = "👤 \(details.author ?? "")"
         channelLabel.isHidden = details.author == nil
+    }
+
+    @objc
+    private func handleUpdateVideoDetailsNotification(_ notification: Notification) {
+        guard let details = notification.userInfo?["VideoDetails"] as? VideoDetails else { return }
+        update(details: details)
     }
 }

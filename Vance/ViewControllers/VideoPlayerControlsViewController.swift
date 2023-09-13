@@ -66,7 +66,7 @@ final class VideoPlayerControlsViewController: UIViewController {
             contentStack.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16.0),
             contentStack.topAnchor.constraint(equalTo: view.topAnchor, constant: 8.0),
             contentStack.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16.0),
-            contentStack.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 8.0)
+            contentStack.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -8.0)
         ])
 
         NSLayoutConstraint.activate([

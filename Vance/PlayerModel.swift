@@ -102,5 +102,7 @@ final class PlayerModel {
 
         player.replaceCurrentItem(with: item)
         player.play()
+
+        NotificationCenter.default.post(name: NSNotification.Name("ShouldUpdateVideoDetails"), object: self, userInfo: ["VideoDetails": currentItem])
     }
 }

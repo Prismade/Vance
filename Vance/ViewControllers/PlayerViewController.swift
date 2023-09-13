@@ -32,6 +32,11 @@ final class PlayerViewController: UIViewController {
         view.backgroundColor = .black
         return view
     }()
+    private lazy var videoDetailsViewController: VideoDetailsViewController = {
+        let viewController = VideoDetailsViewController()
+        viewController.view.translatesAutoresizingMaskIntoConstraints = false
+        return viewController
+    }()
 
     override var preferredStatusBarStyle: UIStatusBarStyle {
         .lightContent
@@ -47,6 +52,7 @@ final class PlayerViewController: UIViewController {
         super.init(nibName: nil, bundle: nil)
         self.playerViewController.player = model.player
         self.playerControlsViewController.model = model
+        self.videoDetailsViewController.model = model
     }
 
     override func loadView() {
@@ -78,6 +84,14 @@ final class PlayerViewController: UIViewController {
             playerControlsViewController.view.trailingAnchor.constraint(equalTo: view.trailingAnchor),
         ])
         playerControlsViewController.didMove(toParent: self)
+
+        addChild(videoDetailsViewController)
+        view.addSubview(videoDetailsViewController.view)
+        NSLayoutConstraint.activate([
+            videoDetailsViewController.view.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            videoDetailsViewController.view.topAnchor.constraint(equalTo: playerControlsViewController.view.bottomAnchor),
+            videoDetailsViewController.view.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+        ])
     }
 
     override func viewDidLoad() {
