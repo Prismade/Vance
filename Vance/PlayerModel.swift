@@ -10,7 +10,7 @@ import AVFoundation
 import Combine
 
 final class PlayerModel {
-    var player: AVPlayer
+    var player: AVQueuePlayer
     var queue: [VideoDetails] = []
     var currentItemIndex: Int = -1
 

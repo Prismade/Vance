@@ -22,7 +22,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Add video to playlist"
+            "value" : "Add video to queue"
           }
         },
         "ru" : {
@@ -65,6 +65,38 @@
         }
       }
     },
+    "Open" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Open"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Открыть"
+          }
+        }
+      }
+    },
+    "Open video" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Open video"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Открыть видео"
+          }
+        }
+      }
+    },
     "Paste a link to a YouTube video here and hit the add button" : {
       "localizations" : {
         "en" : {
@@ -81,6 +113,22 @@
         }
       }
     },
+    "Paste a link to a YouTube video here and hit the open button" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Paste a link to a YouTube video here and hit the open button"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Вставьте ссылку на YouTube-видео и нажмите \"Открыть\""
+          }
+        }
+      }
+    },
     "Queue" : {
       "localizations" : {
         "en" : {
@@ -93,22 +141,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Очередь"
-          }
-        }
-      }
-    },
-    "Use pasteboard" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Use pasteboard"
-          }
-        },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Использовать буфер обмена"
           }
         }
       }

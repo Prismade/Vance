@@ -97,10 +97,11 @@ final class VideoPlayerControlsViewController: UIViewController {
         present(navigationController, animated: true)
     }
 
-    @objc func handleAddButtonTap(_ sender: UIButton) {
+    @objc 
+    func handleAddButtonTap(_ sender: UIButton) {
         let alertController = UIAlertController(
-            title: NSLocalizedString("Add video to queue", comment: ""),
-            message: NSLocalizedString("Paste a link to a YouTube video here and hit the add button", comment: ""),
+            title: NSLocalizedString("Open video", comment: ""),
+            message: NSLocalizedString("Paste a link to a YouTube video here and hit the open button", comment: ""),
             preferredStyle: .alert)
         alertController.addTextField { textField in
             textField.clearButtonMode = .whileEditing
@@ -109,10 +110,11 @@ final class VideoPlayerControlsViewController: UIViewController {
         }
         alertController.addAction(
             UIAlertAction(
-                title: NSLocalizedString("Add", comment: ""),
+                title: NSLocalizedString("Open", comment: ""),
                 style: .default,
                 handler: { _ in
                     guard let urlText = alertController.textFields!.first!.text else { return }
+                    self.model?.clearQueue()
                     self.model?.addVideoToQueue(fromURL: urlText)
                 }))
         alertController.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel))

@@ -12,6 +12,27 @@ import Combine
 
 final class QueueViewController: UITableViewController {
     weak var model: PlayerModel?
+    private lazy var addButton: UIButton = {
+        var configuration = UIButton.Configuration.filled()
+        configuration.baseBackgroundColor = .accent
+        configuration.baseForegroundColor = .white
+        configuration.title = NSLocalizedString("Add", comment: "")
+        let button = UIButton(configuration: configuration)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.addTarget(self, action: #selector(handleAddButtonTap(_:)), for: .touchUpInside)
+        return button
+    }()
+
+    override func loadView() {
+        super.loadView()
+        view.addSubview(addButton)
+        NSLayoutConstraint.activate([
+            addButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            addButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16.0),
+            addButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16.0),
+            addButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
+        ])
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,12 +43,42 @@ final class QueueViewController: UITableViewController {
         tableView.register(QueueItemTableViewCell.self, forCellReuseIdentifier: "QueueItemTableViewCell")
     }
 
+    override func viewDidLayoutSubviews() {
+        tableView.contentInset = UIEdgeInsets(top: 0.0, left: 0.0, bottom: addButton.frame.size.height + 16.0, right: 0.0)
+    }
+
     @objc
     private func handleClearButtonTap(_ sender: UIBarButtonItem) {
         guard let queueSize = model?.queue.count, queueSize > 1 else { return }
         model?.clearQueue()
         tableView.reloadSections(IndexSet(integer: 0), with: .automatic)
         navigationItem.leftBarButtonItem?.isEnabled = false
+    }
+
+    @objc
+    func handleAddButtonTap(_ sender: UIButton) {
+        let alertController = UIAlertController(
+            title: NSLocalizedString("Add video to queue", comment: ""),
+            message: NSLocalizedString("Paste a link to a YouTube video here and hit the add button", comment: ""),
+            preferredStyle: .alert)
+        alertController.addTextField { textField in
+            textField.clearButtonMode = .whileEditing
+            textField.keyboardType = .URL
+            textField.placeholder = "https://youtu.be/..."
+        }
+        alertController.addAction(
+            UIAlertAction(
+                title: NSLocalizedString("Add", comment: ""),
+                style: .default,
+                handler: { _ in
+                    guard let urlText = alertController.textFields!.first!.text else { return }
+                    self.model?.addVideoToQueue(fromURL: urlText)
+                    self.tableView.reloadSections(IndexSet(integer: 0), with: .automatic)
+                    self.navigationItem.leftBarButtonItem?.isEnabled = (self.model?.queue.count ?? 0) > 1
+                }))
+        alertController.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel))
+        alertController.view.tintColor = UIColor(named: "AccentColor")
+        present(alertController, animated: true)
     }
 
     // MARK: - Table view data source
