@@ -29,14 +29,12 @@ final class VideoDetails {
         self.viewCount = viewCount
     }
 
-    func downloadThumbnail() {
+    func downloadThumbnail() async {
         guard let thumbnailURL else { return }
-        Task {
-            do {
-                let (data, _) = try await URLSession.shared.data(from: thumbnailURL)
-                thumbnailData = data
-            } catch {
-            }
+        do {
+            let (data, _) = try await URLSession.shared.data(from: thumbnailURL)
+            thumbnailData = data
+        } catch {
         }
     }
 }

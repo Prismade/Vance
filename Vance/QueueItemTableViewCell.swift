@@ -47,6 +47,13 @@ final class QueueItemTableViewCell: UITableViewCell {
         view.spacing = 6.0
         return view
     }()
+    lazy var activityIndicator: UIActivityIndicatorView = {
+        let view = UIActivityIndicatorView(style: .large)
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.hidesWhenStopped = true
+        view.startAnimating()
+        return view
+    }()
 
     @available(*, unavailable)
     required init?(coder: NSCoder) {
@@ -64,7 +71,11 @@ final class QueueItemTableViewCell: UITableViewCell {
             thumbnailImage.widthAnchor.constraint(equalToConstant: 144.0),
             thumbnailImage.heightAnchor.constraint(equalToConstant: 80.0)
         ])
-
+        contentView.addSubview(activityIndicator)
+        NSLayoutConstraint.activate([
+            activityIndicator.centerXAnchor.constraint(equalTo: thumbnailImage.centerXAnchor),
+            activityIndicator.centerYAnchor.constraint(equalTo: thumbnailImage.centerYAnchor)
+        ])
         contentView.addSubview(container)
         NSLayoutConstraint.activate([
             container.leadingAnchor.constraint(equalTo: thumbnailImage.trailingAnchor, constant: 16.0),

@@ -101,7 +101,17 @@ final class QueueViewController: UITableViewController {
             itemCell?.channelNameLabel.text = item.author
             itemCell?.videoMetaLabel.text = "\(item.viewCount ?? "?") \(NSLocalizedString("Views", comment: ""))"
             if let data = item.thumbnailData {
+                itemCell?.activityIndicator.stopAnimating()
                 itemCell?.thumbnailImage.image = UIImage(data: data)
+            } else {
+                Task { [weak self] in
+                    await item.downloadThumbnail()
+                    guard let data = item.thumbnailData, let cellToUpdate = self?.tableView.cellForRow(at: indexPath) as? QueueItemTableViewCell else { return }
+                    await MainActor.run {
+                        cellToUpdate.activityIndicator.stopAnimating()
+                        cellToUpdate.thumbnailImage.image = UIImage(data: data)
+                    }
+                }
             }
         }
 

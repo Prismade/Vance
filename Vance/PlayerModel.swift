@@ -33,7 +33,6 @@ final class PlayerModel {
 
         do {
             guard let info = try ytdl.extractInfo(from: url) else { return }
-            info.downloadThumbnail()
             queue.append(info)
             guard queue.count == 1 else { return }
             advanceToNextItem()
