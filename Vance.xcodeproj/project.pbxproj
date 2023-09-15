@@ -98,9 +98,9 @@
 				24C0427F28D257AA00270C62 /* Products */,
 				24D5B5FD29BA5C0F0060F8BF /* Frameworks */,
 			);
-			indentWidth = 4;
+			indentWidth = 2;
 			sourceTree = "<group>";
-			tabWidth = 4;
+			tabWidth = 2;
 		};
 		24C0427F28D257AA00270C62 /* Products */ = {
 			isa = PBXGroup;

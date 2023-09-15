@@ -10,31 +10,31 @@ import UIKit
 import AVFoundation
 
 final class SceneDelegate: UIResponder {
-    var window: UIWindow?
-    
-    func setupAudioSession() {
-        let session = AVAudioSession.sharedInstance()
-        do {
-            try session.setCategory(.playback)
-        } catch {
-            print(error.localizedDescription)
-        }
+  var window: UIWindow?
+  
+  func setupAudioSession() {
+    let session = AVAudioSession.sharedInstance()
+    do {
+      try session.setCategory(.playback)
+    } catch {
+      print(error.localizedDescription)
     }
-    
-    func openPlayerViewController() {
-        let viewController = PlayerViewController(model: PlayerModel())
-        window?.rootViewController = viewController
-        window?.makeKeyAndVisible()
-    }
+  }
+  
+  func openPlayerViewController() {
+    let viewController = PlayerViewController(model: PlayerModel())
+    window?.rootViewController = viewController
+    window?.makeKeyAndVisible()
+  }
 }
 
 extension SceneDelegate: UIWindowSceneDelegate {
-    func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
-        guard let windowScene = (scene as? UIWindowScene) else { return }
-        window = UIWindow(frame: UIScreen.main.bounds)
-        window?.windowScene = windowScene
-        setupAudioSession()
-        openPlayerViewController()
-    }
+  func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
+    guard let windowScene = (scene as? UIWindowScene) else { return }
+    window = UIWindow(frame: UIScreen.main.bounds)
+    window?.windowScene = windowScene
+    setupAudioSession()
+    openPlayerViewController()
+  }
 }
 
