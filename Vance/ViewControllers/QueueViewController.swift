@@ -40,6 +40,8 @@ final class QueueViewController: UITableViewController {
     navigationItem.leftBarButtonItem = UIBarButtonItem(title: NSLocalizedString("Clear", comment: ""), style: .plain, target: self, action: #selector(handleClearButtonTap(_:)))
     navigationItem.leftBarButtonItem?.isEnabled = (model?.queue.count ?? 0) > 1
     tableView.rowHeight = 96.0
+    tableView.allowsSelectionDuringEditing = true
+    tableView.allowsMultipleSelectionDuringEditing = true
     tableView.register(QueueItemTableViewCell.self, forCellReuseIdentifier: "QueueItemTableViewCell")
   }
 
@@ -52,22 +54,39 @@ final class QueueViewController: UITableViewController {
     setCurrentVideoSelection()
   }
 
+  override func setEditing(_ editing: Bool, animated: Bool) {
+    super.setEditing(editing, animated: animated)
+    setCurrentVideoSelection()
+  }
+
   private func setCurrentVideoSelection() {
     guard let row = model?.currentItemIndex else { return }
     tableView.selectRow(at: IndexPath(row: row, section: 0), animated: true, scrollPosition: .none)
+  }
+
+  private func reloadSectionAfterUpdate() {
+    tableView.reloadSections(IndexSet(integer: 0), with: .automatic)
+    self.navigationItem.leftBarButtonItem?.isEnabled = (self.model?.queue.count ?? 0) > 1
+    setCurrentVideoSelection()
+  }
+
+  private func removeVideo(at index: Int) {
+    Task { @MainActor in
+      try? await Task.sleep(for: .seconds(0.4))
+      model?.removeVideoFromQueue(atIndex: index)
+      reloadSectionAfterUpdate()
+    }
   }
 
   @objc
   private func handleClearButtonTap(_ sender: UIBarButtonItem) {
     guard let queueSize = model?.queue.count, queueSize > 1 else { return }
     model?.clearQueue()
-    tableView.reloadSections(IndexSet(integer: 0), with: .automatic)
-    navigationItem.leftBarButtonItem?.isEnabled = false
-    setCurrentVideoSelection()
+    reloadSectionAfterUpdate()
   }
 
   @objc
-  func handleAddButtonTap(_ sender: UIButton) {
+  private func handleAddButtonTap(_ sender: UIButton) {
     let alertController = UIAlertController(
       title: NSLocalizedString("Add video to queue", comment: ""),
       message: NSLocalizedString("Paste a link to a YouTube video here and hit the add button", comment: ""),
@@ -84,9 +103,7 @@ final class QueueViewController: UITableViewController {
         handler: { _ in
           guard let urlText = alertController.textFields?.first?.text, !urlText.isEmpty else { return }
           self.model?.addVideoToQueue(fromURL: urlText)
-          self.tableView.reloadSections(IndexSet(integer: 0), with: .automatic)
-          self.navigationItem.leftBarButtonItem?.isEnabled = (self.model?.queue.count ?? 0) > 1
-          self.setCurrentVideoSelection()
+          self.reloadSectionAfterUpdate()
         }))
     alertController.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel))
     alertController.view.tintColor = UIColor(named: "AccentColor")
@@ -136,5 +153,17 @@ final class QueueViewController: UITableViewController {
     let index = indexPath.row
     guard let currentItemIndex = model?.currentItemIndex, index != currentItemIndex else { return }
     model?.advanceToItem(at: index)
+  }
+
+  override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+    guard let currentItemIndex = model?.currentItemIndex, currentItemIndex != indexPath.row else { return nil }
+    let removeAction = UIContextualAction(style: .destructive, title: NSLocalizedString("Remove", comment: "")) { [weak self] (action, view, completionHandler) in
+      self?.removeVideo(at: indexPath.row)
+      completionHandler(true)
+    }
+    removeAction.backgroundColor = .systemRed
+    removeAction.image = UIImage(systemName: "trash")
+    let configuration = UISwipeActionsConfiguration(actions: [removeAction])
+    return configuration
   }
 }
