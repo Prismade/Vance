@@ -113,7 +113,7 @@ final class VideoPlayerControlsViewController: UIViewController {
         title: NSLocalizedString("Open", comment: ""),
         style: .default,
         handler: { _ in
-          guard let urlText = alertController.textFields!.first!.text else { return }
+          guard let urlText = alertController.textFields?.first?.text, !urlText.isEmpty else { return }
           self.model?.clearQueue()
           self.model?.addVideoToQueue(fromURL: urlText)
         }))

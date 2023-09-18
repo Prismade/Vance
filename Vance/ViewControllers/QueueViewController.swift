@@ -71,7 +71,7 @@ final class QueueViewController: UITableViewController {
         title: NSLocalizedString("Add", comment: ""),
         style: .default,
         handler: { _ in
-          guard let urlText = alertController.textFields!.first!.text else { return }
+          guard let urlText = alertController.textFields?.first?.text, !urlText.isEmpty else { return }
           self.model?.addVideoToQueue(fromURL: urlText)
           self.tableView.reloadSections(IndexSet(integer: 0), with: .automatic)
           self.navigationItem.leftBarButtonItem?.isEnabled = (self.model?.queue.count ?? 0) > 1
