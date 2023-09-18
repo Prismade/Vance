@@ -54,8 +54,11 @@ final class PlayerModel {
   }
   
   func clearQueue() {
+    guard currentItemIndex >= 0 && currentItemIndex < queue.count else { return }
+    let currentItem = queue[currentItemIndex]
     queue.removeAll()
-    currentItemIndex = -1
+    queue.append(currentItem)
+    currentItemIndex = 0
   }
   
   func advanceToNextItem() {
