@@ -63,16 +63,22 @@ final class PlayerModel {
   
   func advanceToNextItem() {
     guard !queue.isEmpty, self.currentItemIndex < self.queue.count - 1 else { return }
-    self.currentItemIndex += 1
+    currentItemIndex += 1
     playCurrentItem()
   }
   
   func advanceToPrevItem() {
     guard currentItemIndex > 0 else { return }
-    self.currentItemIndex = currentItemIndex - 1
+    currentItemIndex = currentItemIndex - 1
     playCurrentItem()
   }
-  
+
+  func advanceToItem(at index: Int) {
+    guard index >= 0 && index < queue.count else { return }
+    currentItemIndex = index
+    playCurrentItem()
+  }
+
   private func playCurrentItem() {
     let currentItem = queue[currentItemIndex]
     

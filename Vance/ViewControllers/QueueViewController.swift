@@ -47,12 +47,23 @@ final class QueueViewController: UITableViewController {
     tableView.contentInset = UIEdgeInsets(top: 0.0, left: 0.0, bottom: addButton.frame.size.height + 16.0, right: 0.0)
   }
 
+  override func viewDidAppear(_ animated: Bool) {
+    super.viewDidAppear(animated)
+    setCurrentVideoSelection()
+  }
+
+  private func setCurrentVideoSelection() {
+    guard let row = model?.currentItemIndex else { return }
+    tableView.selectRow(at: IndexPath(row: row, section: 0), animated: true, scrollPosition: .none)
+  }
+
   @objc
   private func handleClearButtonTap(_ sender: UIBarButtonItem) {
     guard let queueSize = model?.queue.count, queueSize > 1 else { return }
     model?.clearQueue()
     tableView.reloadSections(IndexSet(integer: 0), with: .automatic)
     navigationItem.leftBarButtonItem?.isEnabled = false
+    setCurrentVideoSelection()
   }
 
   @objc
@@ -75,6 +86,7 @@ final class QueueViewController: UITableViewController {
           self.model?.addVideoToQueue(fromURL: urlText)
           self.tableView.reloadSections(IndexSet(integer: 0), with: .automatic)
           self.navigationItem.leftBarButtonItem?.isEnabled = (self.model?.queue.count ?? 0) > 1
+          self.setCurrentVideoSelection()
         }))
     alertController.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel))
     alertController.view.tintColor = UIColor(named: "AccentColor")
@@ -116,5 +128,13 @@ final class QueueViewController: UITableViewController {
     }
 
     return cell
+  }
+
+  // MARK: - Table view delegate
+
+  override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    let index = indexPath.row
+    guard let currentItemIndex = model?.currentItemIndex, index != currentItemIndex else { return }
+    model?.advanceToItem(at: index)
   }
 }
