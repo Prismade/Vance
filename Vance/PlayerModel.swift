@@ -32,15 +32,19 @@ final class PlayerModel {
   
   func addVideoToQueue(fromURL url: String) {
     guard let ytdl = YoutubeDL() else { return }
-    
-    do {
-      guard let info = try ytdl.extractInfo(from: url) else { return }
-      queue.append(info)
-      guard didFinishPlayingQueue else { return }
-      didFinishPlayingQueue = false
-      advanceToNextItem()
-    } catch let error {
-      print(#file, #line, error.localizedDescription)
+
+    Task {
+      do {
+        guard let info = try ytdl.extractInfo(from: url) else { return }
+        await MainActor.run {
+          queue.append(info)
+          guard didFinishPlayingQueue else { return }
+          didFinishPlayingQueue = false
+          advanceToNextItem()
+        }
+      } catch let error {
+        print(#file, #line, error.localizedDescription)
+      }
     }
   }
   
