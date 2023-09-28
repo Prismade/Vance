@@ -10,21 +10,23 @@ import AVFoundation
 import Combine
 
 final class PlayerModel {
-  var player: AVQueuePlayer
+  var player: AVPlayer
   var queue: [VideoDetails] = []
   var currentItemIndex: Int = -1
-  
+  var didFinishPlayingQueue: Bool = true
+
   private var subscriptions: Set<AnyCancellable> = []
   
   init() {
-    self.player = AVQueuePlayer(items: [])
+    self.player = AVPlayer()
     self.player.audiovisualBackgroundPlaybackPolicy = .continuesIfPossible
     self.player.automaticallyWaitsToMinimizeStalling = true
-    self.player.publisher(for: \.currentItem).sink { currentItem in
-      guard currentItem == nil, !self.queue.isEmpty else { return }
-      self.currentItemIndex += 1
-      guard self.currentItemIndex < self.queue.count else { return }
-      self.playCurrentItem()
+    NotificationCenter.default.publisher(for: .AVPlayerItemDidPlayToEndTime).sink { _ in
+      guard self.queue.count > 1, self.currentItemIndex != self.queue.count - 1 else {
+        self.didFinishPlayingQueue = true
+        return
+      }
+      self.advanceToNextItem()
     }.store(in: &subscriptions)
   }
   
@@ -34,7 +36,8 @@ final class PlayerModel {
     do {
       guard let info = try ytdl.extractInfo(from: url) else { return }
       queue.append(info)
-      guard queue.count == 1 else { return }
+      guard didFinishPlayingQueue else { return }
+      didFinishPlayingQueue = false
       advanceToNextItem()
     } catch let error {
       print(#file, #line, error.localizedDescription)
