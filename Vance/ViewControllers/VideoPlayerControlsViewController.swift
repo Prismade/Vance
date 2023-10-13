@@ -114,7 +114,7 @@ final class VideoPlayerControlsViewController: UIViewController {
         style: .default,
         handler: { _ in
           guard let urlText = alertController.textFields?.first?.text, !urlText.isEmpty else { return }
-          self.model?.clearQueue()
+          self.model?.purgeQueue()
           self.model?.addVideoToQueue(fromURL: urlText)
         }))
     alertController.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel))

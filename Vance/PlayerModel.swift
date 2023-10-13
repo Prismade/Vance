@@ -67,7 +67,13 @@ final class PlayerModel {
     queue.append(currentItem)
     currentItemIndex = 0
   }
-  
+
+  func purgeQueue() {
+    queue.removeAll()
+    currentItemIndex = -1
+    didFinishPlayingQueue = true
+  }
+
   func advanceToNextItem() {
     guard !queue.isEmpty, self.currentItemIndex < self.queue.count - 1 else { return }
     currentItemIndex += 1
