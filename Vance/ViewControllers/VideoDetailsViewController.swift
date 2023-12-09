@@ -71,7 +71,7 @@ final class VideoDetailsViewController: UIViewController {
     NotificationCenter.default.addObserver(self, selector: #selector(handleUpdateVideoDetailsNotification(_:)), name: NSNotification.Name("ShouldUpdateVideoDetails"), object: nil)
   }
   
-  func update(details: VideoDetails) {
+  func update(details: Video) {
     titleLabel.text = details.title
     titleLabel.isHidden = details.title == nil
     
@@ -84,7 +84,7 @@ final class VideoDetailsViewController: UIViewController {
   
   @objc
   private func handleUpdateVideoDetailsNotification(_ notification: Notification) {
-    guard let details = notification.userInfo?["VideoDetails"] as? VideoDetails else { return }
+    guard let details = notification.userInfo?["Video"] as? Video else { return }
     update(details: details)
   }
 }

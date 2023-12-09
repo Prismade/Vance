@@ -17,22 +17,6 @@
         }
       }
     },
-    "Add video to queue" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Add video to queue"
-          }
-        },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Добавьте видео в очередь"
-          }
-        }
-      }
-    },
     "Cancel" : {
       "localizations" : {
         "en" : {
@@ -45,22 +29,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Отмена"
-          }
-        }
-      }
-    },
-    "Clear" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Clear"
-          }
-        },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Очистить"
           }
         }
       }
@@ -97,22 +65,6 @@
         }
       }
     },
-    "Paste a link to a YouTube video here and hit the add button" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Paste a link to a YouTube video here and hit the add button"
-          }
-        },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Вставьте ссылку на YouTube-видео и нажмите \"Добавить\""
-          }
-        }
-      }
-    },
     "Paste a link to a YouTube video here and hit the open button" : {
       "localizations" : {
         "en" : {
@@ -125,38 +77,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Вставьте ссылку на YouTube-видео и нажмите \"Открыть\""
-          }
-        }
-      }
-    },
-    "Queue" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Queue"
-          }
-        },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Очередь"
-          }
-        }
-      }
-    },
-    "Remove" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Remove"
-          }
-        },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Удалить"
           }
         }
       }

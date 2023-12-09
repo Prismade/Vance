@@ -8,9 +8,6 @@
 
 import UIKit
 import AVKit
-import AVFoundation
-import Python
-import PythonKit
 
 final class PlayerViewController: UIViewController {
   private var model: PlayerModel
@@ -19,11 +16,6 @@ final class PlayerViewController: UIViewController {
     viewController.view.translatesAutoresizingMaskIntoConstraints = false
     viewController.exitsFullScreenWhenPlaybackEnds = true
     viewController.canStartPictureInPictureAutomaticallyFromInline = true
-    return viewController
-  }()
-  private lazy var playerControlsViewController: VideoPlayerControlsViewController = {
-    let viewController = VideoPlayerControlsViewController()
-    viewController.view.translatesAutoresizingMaskIntoConstraints = false
     return viewController
   }()
   private lazy var videoContainer: UIView = {
@@ -36,6 +28,14 @@ final class PlayerViewController: UIViewController {
     let viewController = VideoDetailsViewController()
     viewController.view.translatesAutoresizingMaskIntoConstraints = false
     return viewController
+  }()
+  private lazy var addButton: UIButton = {
+    var configuration = UIButton.Configuration.gray()
+    configuration.title = NSLocalizedString("Add", comment: "")
+    let button = UIButton(configuration: configuration)
+    button.translatesAutoresizingMaskIntoConstraints = false
+    button.addTarget(self, action: #selector(handleAddButtonTap(_:)), for: .touchUpInside)
+    return button
   }()
 
   override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -51,7 +51,6 @@ final class PlayerViewController: UIViewController {
     self.model = model
     super.init(nibName: nil, bundle: nil)
     self.playerViewController.player = model.player
-    self.playerControlsViewController.model = model
     self.videoDetailsViewController.model = model
   }
 
@@ -76,20 +75,18 @@ final class PlayerViewController: UIViewController {
     ])
     playerViewController.didMove(toParent: self)
 
-    addChild(playerControlsViewController)
-    view.addSubview(playerControlsViewController.view)
+    view.addSubview(addButton)
     NSLayoutConstraint.activate([
-      playerControlsViewController.view.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-      playerControlsViewController.view.topAnchor.constraint(equalTo: videoContainer.bottomAnchor, constant: 8.0),
-      playerControlsViewController.view.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+      addButton.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 16.0),
+      addButton.topAnchor.constraint(equalTo: videoContainer.bottomAnchor, constant: 8.0),
+      addButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -16.0),
     ])
-    playerControlsViewController.didMove(toParent: self)
 
     addChild(videoDetailsViewController)
     view.addSubview(videoDetailsViewController.view)
     NSLayoutConstraint.activate([
       videoDetailsViewController.view.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-      videoDetailsViewController.view.topAnchor.constraint(equalTo: playerControlsViewController.view.bottomAnchor),
+      videoDetailsViewController.view.topAnchor.constraint(equalTo: addButton.bottomAnchor, constant: 8.0),
       videoDetailsViewController.view.trailingAnchor.constraint(equalTo: view.trailingAnchor),
     ])
   }
@@ -97,5 +94,37 @@ final class PlayerViewController: UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     setNeedsStatusBarAppearanceUpdate()
+  }
+
+  @objc
+  private func handleAddButtonTap(_ sender: UIButton) {
+    let alertController = UIAlertController(
+      title: NSLocalizedString("Open video", comment: ""),
+      message: NSLocalizedString("Paste a link to a YouTube video here and hit the open button", comment: ""),
+      preferredStyle: .alert)
+    alertController.addTextField { textField in
+      textField.clearButtonMode = .whileEditing
+      textField.keyboardType = .URL
+      textField.placeholder = "https://youtu.be/..."
+    }
+    alertController.addAction(
+      UIAlertAction(
+        title: NSLocalizedString("Open", comment: ""),
+        style: .default,
+        handler: { [weak self] _ in
+          guard 
+            let self,
+            let urlText = alertController.textFields?.first?.text,
+            !urlText.isEmpty
+          else {
+            return
+          }
+          Task {
+            await self.model.playVideo(from: urlText)
+          }
+        }))
+    alertController.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel))
+    alertController.view.tintColor = UIColor(named: "AccentColor")
+    present(alertController, animated: true)
   }
 }

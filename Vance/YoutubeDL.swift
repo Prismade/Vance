@@ -33,7 +33,7 @@ final class YoutubeDL {
   
   // MARK: - Main methods
   
-  func extractInfo(from url: String) throws -> VideoDetails? {
+  func extractInfo(from url: String) throws -> Video? {
     let ytdlpModule = Python.import("yt-dlp")
     let jsonModule = Python.import("json")
     
@@ -89,7 +89,7 @@ final class YoutubeDL {
       thumbnail = infoJSON.firstValue(for: ["thumbnail"]) as? String
     }
     
-    let details = VideoDetails(
+    let details = Video(
       url: url,
       headers: headers,
       title: title,

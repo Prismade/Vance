@@ -1,5 +1,5 @@
 //
-//  VideoDetails.swift
+//  Video.swift
 //  Vance
 //
 //  Created by Egor Molchanov on 05.02.2023.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-final class VideoDetails {
+final class Video {
   let url: URL
   let headers: [String: String]
   let title: String?
@@ -39,8 +39,8 @@ final class VideoDetails {
   }
 }
 
-extension VideoDetails: Equatable {
-  static func == (lhs: VideoDetails, rhs: VideoDetails) -> Bool {
+extension Video: Equatable {
+  static func == (lhs: Video, rhs: Video) -> Bool {
     return lhs.url == rhs.url
   }
 }
