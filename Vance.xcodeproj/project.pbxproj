@@ -12,11 +12,11 @@
 		246D53D32976914B00098B1B /* Dictionary+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246D53D22976914B00098B1B /* Dictionary+Convenience.swift */; };
 		246E8CA92AB23E6300E47D57 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 246E8CA82AB23E6300E47D57 /* Localizable.xcstrings */; };
 		249C8B1C2A9FFD850066D73C /* PlayerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249C8B1B2A9FFD850066D73C /* PlayerModel.swift */; };
+		24A9D6982B28AA470007BFD8 /* yt-dlp in Resources */ = {isa = PBXBuildFile; fileRef = 24A9D6972B28AA470007BFD8 /* yt-dlp */; };
 		24C0428228D257AA00270C62 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24C0428128D257AA00270C62 /* AppDelegate.swift */; };
 		24C0428428D257AA00270C62 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24C0428328D257AA00270C62 /* SceneDelegate.swift */; };
 		24C0428B28D257AA00270C62 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 24C0428A28D257AA00270C62 /* Assets.xcassets */; };
 		24C0429828D25DEB00270C62 /* PlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24C0429728D25DEB00270C62 /* PlayerViewController.swift */; };
-		24D0DB7629C1385200AC450E /* PythonModules in Resources */ = {isa = PBXBuildFile; fileRef = 24D0DB7529C1385200AC450E /* PythonModules */; };
 		24D5AF9C29BA5B2D0060F8BF /* PythonKit in Frameworks */ = {isa = PBXBuildFile; productRef = 24D5AF9B29BA5B2D0060F8BF /* PythonKit */; };
 		24D5AFA129BA5B960060F8BF /* Python.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24D5AFA029BA5B960060F8BF /* Python.xcframework */; };
 		24D5B5FF29BA5C0F0060F8BF /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24D5B5FE29BA5C0F0060F8BF /* SystemConfiguration.framework */; };
@@ -30,13 +30,13 @@
 		246D53D22976914B00098B1B /* Dictionary+Convenience.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Dictionary+Convenience.swift"; sourceTree = "<group>"; };
 		246E8CA82AB23E6300E47D57 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 		249C8B1B2A9FFD850066D73C /* PlayerModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerModel.swift; sourceTree = "<group>"; };
+		24A9D6972B28AA470007BFD8 /* yt-dlp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "yt-dlp"; sourceTree = SOURCE_ROOT; };
 		24C0427E28D257AA00270C62 /* Vance.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Vance.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		24C0428128D257AA00270C62 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		24C0428328D257AA00270C62 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		24C0428A28D257AA00270C62 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		24C0428F28D257AA00270C62 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		24C0429728D25DEB00270C62 /* PlayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerViewController.swift; sourceTree = "<group>"; };
-		24D0DB7529C1385200AC450E /* PythonModules */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = folder; path = PythonModules; sourceTree = SOURCE_ROOT; };
 		24D5AFA029BA5B960060F8BF /* Python.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = Python.xcframework; sourceTree = "<group>"; };
 		24D5B5FE29BA5C0F0060F8BF /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		24D5B60029BA5D5B0060F8BF /* python-stdlib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "python-stdlib"; sourceTree = SOURCE_ROOT; };
@@ -122,7 +122,7 @@
 		24C0428028D257AA00270C62 /* Vance */ = {
 			isa = PBXGroup;
 			children = (
-				24D0DB7529C1385200AC450E /* PythonModules */,
+				24A9D6972B28AA470007BFD8 /* yt-dlp */,
 				24D5B60029BA5D5B0060F8BF /* python-stdlib */,
 				24D5AFA029BA5B960060F8BF /* Python.xcframework */,
 				2432363829901B6E002DD2E4 /* App */,
@@ -212,7 +212,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				24D0DB7629C1385200AC450E /* PythonModules in Resources */,
+				24A9D6982B28AA470007BFD8 /* yt-dlp in Resources */,
 				246E8CA92AB23E6300E47D57 /* Localizable.xcstrings in Resources */,
 				24C0428B28D257AA00270C62 /* Assets.xcassets in Resources */,
 				24D5B60129BA5D5B0060F8BF /* python-stdlib in Resources */,

@@ -15,8 +15,8 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
   func applicationDidFinishLaunching(_ application: UIApplication) {
     guard let stdLibPath = Bundle.main.path(forResource: "python-stdlib", ofType: nil) else { return }
     guard let libDynloadPath = Bundle.main.path(forResource: "python-stdlib/lib-dynload", ofType: nil) else { return }
-    guard let ytdlpPath = Bundle.main.path(forResource: "PythonModules", ofType: nil) else { return }
-    
+    guard let ytdlpPath = Bundle.main.path(forResource: "yt-dlp", ofType: nil) else { return }
+
     setenv("PYTHONHOME", stdLibPath, 1)
     setenv("PYTHONPATH", "\(stdLibPath):\(libDynloadPath):\(ytdlpPath)", 1)
     

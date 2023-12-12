@@ -34,7 +34,7 @@ final class YoutubeDL {
   // MARK: - Main methods
   
   func extractInfo(from url: String) throws -> Video? {
-    let ytdlpModule = Python.import("yt-dlp")
+    let ytdlpModule = Python.import("yt_dlp")
     let jsonModule = Python.import("json")
     
     let options: PythonObject = [
