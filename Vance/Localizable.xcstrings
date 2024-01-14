@@ -1,6 +1,26 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
+    "(Requires restart) Enables use of custom non-system player on video screen" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "(Требуется перезапуск) Включает использование своего, не системного плеера на экране с видео"
+          }
+        }
+      }
+    },
+    "(Requires restart) Enables use of queue on video screen" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "(Требуется перезапуск) Включает очередь на экране с видео"
+          }
+        }
+      }
+    },
     "Add" : {
       "localizations" : {
         "en" : {
@@ -29,6 +49,36 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Отмена"
+          }
+        }
+      }
+    },
+    "Experiments" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Эксперименты"
+          }
+        }
+      }
+    },
+    "Is custom player enabled" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Использовать свой плеер для видео"
+          }
+        }
+      }
+    },
+    "Is queue feature enabled" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Использовать очереди для видео"
           }
         }
       }
@@ -77,6 +127,26 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Вставьте ссылку на YouTube-видео и нажмите \"Открыть\""
+          }
+        }
+      }
+    },
+    "Settings" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Настройки"
+          }
+        }
+      }
+    },
+    "Video" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Видео"
           }
         }
       }
