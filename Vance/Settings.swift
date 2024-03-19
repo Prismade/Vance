@@ -9,23 +9,9 @@
 import Foundation
 
 struct Settings {
-  static let kQueueEnabled = "queue-enabled"
-  static let kCustomPlayerEnabled = "custom-player-enabled"
+  @BoolSetting(key: "queue-enabled")
+  static var isQueueEnabled
 
-  static var isQueueEnabled: Bool {
-    get {
-      UserDefaults.standard.bool(forKey: kQueueEnabled)
-    }
-    set {
-      UserDefaults.standard.set(newValue, forKey: kQueueEnabled)
-    }
-  }
-  static var isCustomPlayerEnabled: Bool {
-    get {
-      UserDefaults.standard.bool(forKey: kCustomPlayerEnabled)
-    }
-    set {
-      UserDefaults.standard.setValue(newValue, forKey: kCustomPlayerEnabled)
-    }
-  }
+  @BoolSetting(key: "custom-player-enabled")
+  static var isCustomPlayerEnabled
 }
