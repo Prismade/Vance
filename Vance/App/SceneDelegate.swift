@@ -21,8 +21,8 @@ final class SceneDelegate: UIResponder {
     }
   }
 
-  func openMainTabBarViewController() {
-    let viewController = MainTabBarController()
+  func openPlayerViewController() {
+    let viewController = PlayerViewController(model: PlayerModel())
     window?.rootViewController = viewController
     window?.makeKeyAndVisible()
   }
@@ -34,7 +34,7 @@ extension SceneDelegate: UIWindowSceneDelegate {
     window = UIWindow(frame: UIScreen.main.bounds)
     window?.windowScene = windowScene
     setupAudioSession()
-    openMainTabBarViewController()
+    openPlayerViewController()
   }
 }
 

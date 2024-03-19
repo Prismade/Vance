@@ -1,34 +1,8 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
-    "(Requires restart) Enables use of custom non-system player on video screen" : {
-      "localizations" : {
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "(Требуется перезапуск) Включает использование своего, не системного плеера на экране с видео"
-          }
-        }
-      }
-    },
-    "(Requires restart) Enables use of queue on video screen" : {
-      "localizations" : {
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "(Требуется перезапуск) Включает очередь на экране с видео"
-          }
-        }
-      }
-    },
     "Add" : {
       "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Add"
-          }
-        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
@@ -39,12 +13,6 @@
     },
     "Cancel" : {
       "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Cancel"
-          }
-        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
@@ -53,44 +21,8 @@
         }
       }
     },
-    "Experiments" : {
-      "localizations" : {
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Эксперименты"
-          }
-        }
-      }
-    },
-    "Is custom player enabled" : {
-      "localizations" : {
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Использовать свой плеер для видео"
-          }
-        }
-      }
-    },
-    "Is queue feature enabled" : {
-      "localizations" : {
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Использовать очереди для видео"
-          }
-        }
-      }
-    },
     "Open" : {
       "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Open"
-          }
-        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
@@ -101,12 +33,6 @@
     },
     "Open video" : {
       "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Open video"
-          }
-        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
@@ -117,12 +43,6 @@
     },
     "Paste a link to a YouTube video here and hit the open button" : {
       "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Paste a link to a YouTube video here and hit the open button"
-          }
-        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
@@ -131,34 +51,56 @@
         }
       }
     },
-    "Settings" : {
-      "localizations" : {
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Настройки"
-          }
-        }
-      }
-    },
-    "Video" : {
-      "localizations" : {
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Видео"
-          }
-        }
-      }
-    },
-    "Views" : {
+    "ShortForBillions" : {
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "views"
+            "value" : "B"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : " млрд."
+          }
+        }
+      }
+    },
+    "ShortForMillions" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "M"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : " млн."
+          }
+        }
+      }
+    },
+    "ShortForThousands" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "K"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : " тыс."
+          }
+        }
+      }
+    },
+    "views" : {
+      "localizations" : {
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
