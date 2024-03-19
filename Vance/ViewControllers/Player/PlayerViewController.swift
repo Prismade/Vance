@@ -75,19 +75,20 @@ final class PlayerViewController: UIViewController {
     ])
     playerViewController.didMove(toParent: self)
 
-    view.addSubview(addButton)
-    NSLayoutConstraint.activate([
-      addButton.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 16.0),
-      addButton.topAnchor.constraint(equalTo: videoContainer.bottomAnchor, constant: 8.0),
-      addButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -16.0),
-    ])
-
     addChild(videoDetailsViewController)
     view.addSubview(videoDetailsViewController.view)
     NSLayoutConstraint.activate([
       videoDetailsViewController.view.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-      videoDetailsViewController.view.topAnchor.constraint(equalTo: addButton.bottomAnchor, constant: 8.0),
+      videoDetailsViewController.view.topAnchor.constraint(equalTo: videoContainer.bottomAnchor),
       videoDetailsViewController.view.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+      videoDetailsViewController.view.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+    ])
+
+    view.addSubview(addButton)
+    NSLayoutConstraint.activate([
+      addButton.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 16.0),
+      addButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -8.0),
+      addButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -16.0),
     ])
   }
 

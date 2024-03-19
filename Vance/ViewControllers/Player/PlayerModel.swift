@@ -20,7 +20,6 @@ final class PlayerModel {
   func playVideo(from url: String) async {
     do {
       guard let video = try YoutubeDL()?.extractInfo(from: url) else { return }
-      await video.downloadThumbnail()
       await MainActor.run {
         play(video: video)
       }
@@ -30,6 +29,8 @@ final class PlayerModel {
   }
 
   func play(video: Video) {
+    guard let videoURL = video.url, let videoHeaders = video.headers else { return }
+
     let session = AVAudioSession.sharedInstance()
     do {
       try session.setActive(true)
@@ -37,23 +38,16 @@ final class PlayerModel {
       print(error.localizedDescription)
     }
 
-    let asset = AVURLAsset(url: video.url, options: ["AVURLAssetHTTPHeaderFieldsKey": video.headers])
+    let asset = AVURLAsset(url: videoURL, options: ["AVURLAssetHTTPHeaderFieldsKey": videoHeaders])
     let item = AVPlayerItem(asset: asset)
 
     var meta: [AVMutableMetadataItem] = []
 
     let title = AVMutableMetadataItem()
     title.identifier = .commonIdentifierTitle
-    title.value = (video.title ?? "YouTube video") as NSString
+    title.value = (video.info.title ?? "YouTube video") as NSString
     meta.append(title)
 
-    if let thumbnail = video.thumbnailData {
-      let artwork = AVMutableMetadataItem()
-      artwork.identifier = .commonIdentifierArtwork
-      artwork.value = thumbnail as NSData
-      artwork.dataType = kCMMetadataBaseDataType_JPEG as String
-      meta.append(artwork)
-    }
 
     item.externalMetadata = meta
     
