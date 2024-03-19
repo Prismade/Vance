@@ -22,7 +22,7 @@
 		24D5B5FF29BA5C0F0060F8BF /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24D5B5FE29BA5C0F0060F8BF /* SystemConfiguration.framework */; };
 		24D5B60129BA5D5B0060F8BF /* python-stdlib in Resources */ = {isa = PBXBuildFile; fileRef = 24D5B60029BA5D5B0060F8BF /* python-stdlib */; };
 		24DF8C512BA9D03B009890A0 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24DF8C502BA9D03B009890A0 /* Settings.swift */; };
-		24DF8C552BA9D4F3009890A0 /* SettingPropertyWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24DF8C542BA9D4F3009890A0 /* SettingPropertyWrapper.swift */; };
+		24DF8C552BA9D4F3009890A0 /* TogglePropertyWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24DF8C542BA9D4F3009890A0 /* TogglePropertyWrapper.swift */; };
 		24DF8C572BA9D859009890A0 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 24DF8C562BA9D859009890A0 /* Settings.bundle */; };
 		24F503C829BBB2D70001CD8F /* YoutubeDL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24F503C729BBB2D70001CD8F /* YoutubeDL.swift */; };
 /* End PBXBuildFile section */
@@ -44,7 +44,7 @@
 		24D5B5FE29BA5C0F0060F8BF /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		24D5B60029BA5D5B0060F8BF /* python-stdlib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "python-stdlib"; sourceTree = SOURCE_ROOT; };
 		24DF8C502BA9D03B009890A0 /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
-		24DF8C542BA9D4F3009890A0 /* SettingPropertyWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingPropertyWrapper.swift; sourceTree = "<group>"; };
+		24DF8C542BA9D4F3009890A0 /* TogglePropertyWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TogglePropertyWrapper.swift; sourceTree = "<group>"; };
 		24DF8C562BA9D859009890A0 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		24F503C729BBB2D70001CD8F /* YoutubeDL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YoutubeDL.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -137,7 +137,7 @@
 				24201C392B2519C2007F981B /* Data */,
 				24F503C729BBB2D70001CD8F /* YoutubeDL.swift */,
 				24DF8C502BA9D03B009890A0 /* Settings.swift */,
-				24DF8C542BA9D4F3009890A0 /* SettingPropertyWrapper.swift */,
+				24DF8C542BA9D4F3009890A0 /* TogglePropertyWrapper.swift */,
 				24DF8C562BA9D859009890A0 /* Settings.bundle */,
 				24C0428A28D257AA00270C62 /* Assets.xcassets */,
 				246E8CA82AB23E6300E47D57 /* Localizable.xcstrings */,
@@ -261,7 +261,7 @@
 				242127F02A829BF500B2A362 /* VideoDetailsViewController.swift in Sources */,
 				2432363B299026B7002DD2E4 /* Video.swift in Sources */,
 				24C0428228D257AA00270C62 /* AppDelegate.swift in Sources */,
-				24DF8C552BA9D4F3009890A0 /* SettingPropertyWrapper.swift in Sources */,
+				24DF8C552BA9D4F3009890A0 /* TogglePropertyWrapper.swift in Sources */,
 				24C0428428D257AA00270C62 /* SceneDelegate.swift in Sources */,
 				249C8B1C2A9FFD850066D73C /* PlayerModel.swift in Sources */,
 				24C0429828D25DEB00270C62 /* PlayerViewController.swift in Sources */,

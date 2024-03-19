@@ -8,10 +8,10 @@
 
 import Foundation
 
-struct Settings {
-  @BoolSetting(key: "queue-enabled")
+enum Settings {
+  @Toggle(key: "queue-enabled")
   static var isQueueEnabled
 
-  @BoolSetting(key: "custom-player-enabled")
+  @Toggle(key: "custom-player-enabled")
   static var isCustomPlayerEnabled
 }

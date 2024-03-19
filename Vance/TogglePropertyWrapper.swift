@@ -1,5 +1,5 @@
 //
-//  SettingPropertyWrapper.swift
+//  TogglePropertyWrapper.swift
 //  Vance
 //
 //  Created by Egor Molchanov on 19.03.2024.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-@propertyWrapper struct BoolSetting {
+@propertyWrapper struct Toggle {
   let key: String
   var defaults: UserDefaults = .standard
 
