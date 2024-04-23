@@ -147,7 +147,7 @@ final class VideoDetailsViewController: UITableViewController {
 
       var subtitle: String?
       let df = DateFormatter()
-      df.dateFormat = "YYYYMMDD"
+      df.dateFormat = "YYYYMMdd"
       if let viewsCount = video.info.viewsCount, let timestamp = video.info.uploadDate, let date = df.date(from: timestamp) {
         let uploadDate = RelativeDateTimeFormatter().localizedString(for: date, relativeTo: Date())
 
