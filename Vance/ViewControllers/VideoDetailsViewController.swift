@@ -55,10 +55,18 @@ final class VideoDetailsTableViewCell: UITableViewCell {
     subtitleLabel.text = subtitle
   }
 }
+
 final class ChannelTableViewCell: UITableViewCell {
   private lazy var avatarImageView: UIImageView = {
     let view = UIImageView()
     view.translatesAutoresizingMaskIntoConstraints = false
+    view.layer.cornerRadius = 20.0
+    return view
+  }()
+  private lazy var stack: UIStackView = {
+    let view = UIStackView(arrangedSubviews: [titleLabel, followersCountLabel])
+    view.translatesAutoresizingMaskIntoConstraints = false
+    view.axis = .vertical
     return view
   }()
   private lazy var titleLabel: UILabel = {
@@ -74,7 +82,7 @@ final class ChannelTableViewCell: UITableViewCell {
     label.translatesAutoresizingMaskIntoConstraints = false
     label.numberOfLines = 1
     label.font = .systemFont(ofSize: 11.0)
-    label.textColor = .label
+    label.textColor = .secondaryLabel
     return label
   }()
 
@@ -87,25 +95,18 @@ final class ChannelTableViewCell: UITableViewCell {
     super.init(style: style, reuseIdentifier: reuseIdentifier)
     contentView.addSubview(avatarImageView)
     NSLayoutConstraint.activate([
-      avatarImageView.widthAnchor.constraint(equalTo: avatarImageView.heightAnchor, multiplier: 1.0),
-      avatarImageView.widthAnchor.constraint(equalToConstant: 60.0),
+      avatarImageView.widthAnchor.constraint(equalToConstant: 40.0),
+      avatarImageView.heightAnchor.constraint(equalToConstant: 40.0),
       avatarImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16.0),
       avatarImageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 8.0),
-      avatarImageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16.0),
       avatarImageView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -8.0)
     ])
 
-    addSubview(titleLabel)
+    addSubview(stack)
     NSLayoutConstraint.activate([
-      titleLabel.leadingAnchor.constraint(equalTo: avatarImageView.trailingAnchor, constant: 16.0),
-      titleLabel.centerYAnchor.constraint(equalTo: avatarImageView.centerYAnchor)
-    ])
-
-    addSubview(followersCountLabel)
-    NSLayoutConstraint.activate([
-      followersCountLabel.leadingAnchor.constraint(equalTo: titleLabel.trailingAnchor, constant: 16.0),
-      followersCountLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16.0),
-      followersCountLabel.firstBaselineAnchor.constraint(equalTo: titleLabel.firstBaselineAnchor)
+      stack.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
+      stack.leadingAnchor.constraint(equalTo: avatarImageView.trailingAnchor, constant: 16.0),
+      stack.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16.0),
     ])
   }
 
@@ -119,7 +120,6 @@ final class VideoDetailsViewController: UITableViewController {
   var video: Video?
   weak var model: PlayerModel?
 
-  
   override func viewDidLoad() {
     super.viewDidLoad()
     tableView.separatorStyle = .none
@@ -127,7 +127,7 @@ final class VideoDetailsViewController: UITableViewController {
     tableView.register(VideoDetailsTableViewCell.self, forCellReuseIdentifier: String(describing: VideoDetailsTableViewCell.self))
     tableView.register(ChannelTableViewCell.self, forCellReuseIdentifier: String(describing: ChannelTableViewCell.self))
   }
-  
+
   @objc
   private func handleUpdateVideoDetailsNotification(_ notification: Notification) {
     guard let video = notification.userInfo?["Video"] as? Video else { return }
@@ -136,7 +136,7 @@ final class VideoDetailsViewController: UITableViewController {
   }
 
   override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    return 1
+    return 2
   }
 
   override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
