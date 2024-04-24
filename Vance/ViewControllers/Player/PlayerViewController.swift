@@ -29,6 +29,14 @@ final class PlayerViewController: UIViewController {
     viewController.view.translatesAutoresizingMaskIntoConstraints = false
     return viewController
   }()
+  private lazy var debugButton: UIButton = {
+    var configuration = UIButton.Configuration.gray()
+    configuration.title = NSLocalizedString("Debug", comment: "")
+    let button = UIButton(configuration: configuration)
+    button.translatesAutoresizingMaskIntoConstraints = false
+    button.addTarget(self, action: #selector(handleDebugButtonTap(_:)), for: .touchUpInside)
+    return button
+  }()
   private lazy var addButton: UIButton = {
     var configuration = UIButton.Configuration.gray()
     configuration.title = NSLocalizedString("Add", comment: "")
@@ -36,6 +44,18 @@ final class PlayerViewController: UIViewController {
     button.translatesAutoresizingMaskIntoConstraints = false
     button.addTarget(self, action: #selector(handleAddButtonTap(_:)), for: .touchUpInside)
     return button
+  }()
+  private lazy var buttonsStack: UIStackView = {
+    let arrangedSubviews = if CommandLine.arguments.contains("-DDEBUG") {
+      [debugButton, addButton]
+    } else {
+      [addButton]
+    }
+    let view = UIStackView(arrangedSubviews: arrangedSubviews)
+    view.translatesAutoresizingMaskIntoConstraints = false
+    view.axis = .vertical
+    view.spacing = 8.0
+    return view
   }()
 
   override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -84,17 +104,34 @@ final class PlayerViewController: UIViewController {
       videoDetailsViewController.view.bottomAnchor.constraint(equalTo: view.bottomAnchor)
     ])
 
-    view.addSubview(addButton)
+    view.addSubview(buttonsStack)
     NSLayoutConstraint.activate([
-      addButton.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 16.0),
-      addButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -8.0),
-      addButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -16.0),
+      buttonsStack.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 16.0),
+      buttonsStack.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -8.0),
+      buttonsStack.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -16.0),
     ])
   }
 
   override func viewDidLoad() {
     super.viewDidLoad()
     setNeedsStatusBarAppearanceUpdate()
+  }
+
+  @objc
+  private func handleDebugButtonTap(_ sender: UIButton) {
+    let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+    alertController.addAction(
+      UIAlertAction(
+        title: NSLocalizedString("Open test video", comment: ""),
+        style: .default,
+        handler: { [weak self] _ in
+          guard let self else { return }
+          let testVideo = Video.sample
+          self.model.play(video: testVideo)
+        }))
+    alertController.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel))
+    alertController.view.tintColor = UIColor(named: "AccentColor")
+    present(alertController, animated: true)
   }
 
   @objc

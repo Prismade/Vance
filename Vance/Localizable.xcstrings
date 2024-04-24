@@ -21,12 +21,32 @@
         }
       }
     },
+    "Debug" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Отладка"
+          }
+        }
+      }
+    },
     "Open" : {
       "localizations" : {
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Открыть"
+          }
+        }
+      }
+    },
+    "Open test video" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Открыть тестовое видео"
           }
         }
       }
