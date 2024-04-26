@@ -14,6 +14,7 @@
 		2487F88E2B7AC1D2009AA9FA /* Int+Format.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2487F88D2B7AC1D2009AA9FA /* Int+Format.swift */; };
 		249C8B1C2A9FFD850066D73C /* PlayerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249C8B1B2A9FFD850066D73C /* PlayerModel.swift */; };
 		24A9D6982B28AA470007BFD8 /* yt-dlp in Resources */ = {isa = PBXBuildFile; fileRef = 24A9D6972B28AA470007BFD8 /* yt-dlp */; };
+		24AF7E152BD97CC300365198 /* QueueTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24AF7E142BD97CC300365198 /* QueueTableViewController.swift */; };
 		24C0428228D257AA00270C62 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24C0428128D257AA00270C62 /* AppDelegate.swift */; };
 		24C0428428D257AA00270C62 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24C0428328D257AA00270C62 /* SceneDelegate.swift */; };
 		24C0428B28D257AA00270C62 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 24C0428A28D257AA00270C62 /* Assets.xcassets */; };
@@ -36,6 +37,7 @@
 		2487F88D2B7AC1D2009AA9FA /* Int+Format.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int+Format.swift"; sourceTree = "<group>"; };
 		249C8B1B2A9FFD850066D73C /* PlayerModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerModel.swift; sourceTree = "<group>"; };
 		24A9D6972B28AA470007BFD8 /* yt-dlp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "yt-dlp"; sourceTree = SOURCE_ROOT; };
+		24AF7E142BD97CC300365198 /* QueueTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QueueTableViewController.swift; sourceTree = "<group>"; };
 		24C0427E28D257AA00270C62 /* Vance.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Vance.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		24C0428128D257AA00270C62 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		24C0428328D257AA00270C62 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -103,10 +105,19 @@
 		2432363929901B84002DD2E4 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				24AF7E132BD97CB500365198 /* Queue */,
 				24201C3A2B2519D1007F981B /* Player */,
 				242127EF2A829BF500B2A362 /* VideoDetailsViewController.swift */,
 			);
 			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		24AF7E132BD97CB500365198 /* Queue */ = {
+			isa = PBXGroup;
+			children = (
+				24AF7E142BD97CC300365198 /* QueueTableViewController.swift */,
+			);
+			path = Queue;
 			sourceTree = "<group>";
 		};
 		24C0427528D257AA00270C62 = {
@@ -269,6 +280,7 @@
 				24C0428428D257AA00270C62 /* SceneDelegate.swift in Sources */,
 				249C8B1C2A9FFD850066D73C /* PlayerModel.swift in Sources */,
 				24C0429828D25DEB00270C62 /* PlayerViewController.swift in Sources */,
+				24AF7E152BD97CC300365198 /* QueueTableViewController.swift in Sources */,
 				246D53D32976914B00098B1B /* Dictionary+Convenience.swift in Sources */,
 				24DF8C512BA9D03B009890A0 /* Settings.swift in Sources */,
 				24F503C829BBB2D70001CD8F /* YoutubeDL.swift in Sources */,

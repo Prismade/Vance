@@ -37,20 +37,31 @@ final class PlayerViewController: UIViewController {
     button.addTarget(self, action: #selector(handleDebugButtonTap(_:)), for: .touchUpInside)
     return button
   }()
-  private lazy var addButton: UIButton = {
+  private lazy var openButton: UIButton = {
     var configuration = UIButton.Configuration.gray()
-    configuration.title = NSLocalizedString("Add", comment: "")
+    configuration.title = NSLocalizedString("Open", comment: "")
     let button = UIButton(configuration: configuration)
     button.translatesAutoresizingMaskIntoConstraints = false
-    button.addTarget(self, action: #selector(handleAddButtonTap(_:)), for: .touchUpInside)
+    button.addTarget(self, action: #selector(handleOpenButtonTap(_:)), for: .touchUpInside)
+    return button
+  }()
+  private lazy var queueButton: UIButton = {
+    var configuration = UIButton.Configuration.gray()
+    configuration.title = NSLocalizedString("Queue", comment: "")
+    let button = UIButton(configuration: configuration)
+    button.translatesAutoresizingMaskIntoConstraints = false
+    button.addTarget(self, action: #selector(handleQueueButtonTap(_:)), for: .touchUpInside)
     return button
   }()
   private lazy var buttonsStack: UIStackView = {
-    let arrangedSubviews = if CommandLine.arguments.contains("-DDEBUG") {
-      [debugButton, addButton]
-    } else {
-      [addButton]
+    var arrangedSubviews = [openButton]
+    if CommandLine.arguments.contains("-DDEBUG") {
+      arrangedSubviews.insert(debugButton, at: 0)
     }
+    if Settings.isQueueEnabled {
+      arrangedSubviews.append(queueButton)
+    }
+
     let view = UIStackView(arrangedSubviews: arrangedSubviews)
     view.translatesAutoresizingMaskIntoConstraints = false
     view.axis = .vertical
@@ -135,7 +146,7 @@ final class PlayerViewController: UIViewController {
   }
 
   @objc
-  private func handleAddButtonTap(_ sender: UIButton) {
+  private func handleOpenButtonTap(_ sender: UIButton) {
     let alertController = UIAlertController(
       title: NSLocalizedString("Open video", comment: ""),
       message: NSLocalizedString("Paste a link to a YouTube video here and hit the open button", comment: ""),
@@ -164,5 +175,18 @@ final class PlayerViewController: UIViewController {
     alertController.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel))
     alertController.view.tintColor = UIColor(named: "AccentColor")
     present(alertController, animated: true)
+  }
+
+  @objc
+  private func handleQueueButtonTap(_ sender: UIButton) {
+    let viewController = UINavigationController(rootViewController: QueueTableViewController(style: .plain))
+    viewController.modalPresentationStyle = .pageSheet
+    if let sheet = viewController.sheetPresentationController {
+      sheet.detents = [.medium(), .large()]
+      sheet.largestUndimmedDetentIdentifier = .medium
+      sheet.prefersScrollingExpandsWhenScrolledToEdge = false
+      sheet.preferredCornerRadius = 20
+    }
+    present(viewController, animated: true)
   }
 }

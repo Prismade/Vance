@@ -71,6 +71,16 @@
         }
       }
     },
+    "Queue" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Очередь"
+          }
+        }
+      }
+    },
     "ShortForBillions" : {
       "localizations" : {
         "en" : {
