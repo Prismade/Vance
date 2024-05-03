@@ -37,12 +37,26 @@ final class PlayerViewController: UIViewController {
     button.addTarget(self, action: #selector(handleDebugButtonTap(_:)), for: .touchUpInside)
     return button
   }()
-  private lazy var openButton: UIButton = {
+  private lazy var backwardButton: UIButton = {
     var configuration = UIButton.Configuration.gray()
-    configuration.title = NSLocalizedString("Open", comment: "")
+    configuration.image = UIImage(systemName: "backward.end.fill", withConfiguration: UIImage.SymbolConfiguration(scale: .small))
     let button = UIButton(configuration: configuration)
     button.translatesAutoresizingMaskIntoConstraints = false
-    button.addTarget(self, action: #selector(handleOpenButtonTap(_:)), for: .touchUpInside)
+    button.addTarget(self, action: #selector(handleBackwardButtonTap(_:)), for: .touchUpInside)
+    NSLayoutConstraint.activate([
+      button.widthAnchor.constraint(equalToConstant: 40.0)
+    ])
+    return button
+  }()
+  private lazy var forwardButton: UIButton = {
+    var configuration = UIButton.Configuration.gray()
+    configuration.image = UIImage(systemName: "forward.end.fill", withConfiguration: UIImage.SymbolConfiguration(scale: .small))
+    let button = UIButton(configuration: configuration)
+    button.translatesAutoresizingMaskIntoConstraints = false
+    button.addTarget(self, action: #selector(handleForwardButtonTap(_:)), for: .touchUpInside)
+    NSLayoutConstraint.activate([
+      button.widthAnchor.constraint(equalToConstant: 40.0)
+    ])
     return button
   }()
   private lazy var queueButton: UIButton = {
@@ -53,13 +67,38 @@ final class PlayerViewController: UIViewController {
     button.addTarget(self, action: #selector(handleQueueButtonTap(_:)), for: .touchUpInside)
     return button
   }()
+  private lazy var openButton: UIButton = {
+    var configuration = UIButton.Configuration.gray()
+    if Settings.isQueueEnabled {
+      configuration.image = UIImage(systemName: "plus.app")
+    } else {
+      configuration.title = NSLocalizedString("Open", comment: "")
+    }
+    let button = UIButton(configuration: configuration)
+    button.translatesAutoresizingMaskIntoConstraints = false
+    button.addTarget(self, action: #selector(handleOpenButtonTap(_:)), for: .touchUpInside)
+    if Settings.isQueueEnabled {
+      NSLayoutConstraint.activate([
+        button.widthAnchor.constraint(equalToConstant: 40.0)
+      ])
+    }
+    return button
+  }()
+  private lazy var controlsStack: UIStackView = {
+    let view = UIStackView(arrangedSubviews: [backwardButton, forwardButton, queueButton, openButton])
+    view.translatesAutoresizingMaskIntoConstraints = false
+    view.spacing = 8.0
+    return view
+  }()
   private lazy var buttonsStack: UIStackView = {
-    var arrangedSubviews = [openButton]
+    var arrangedSubviews: [UIView] = []
     if CommandLine.arguments.contains("-DDEBUG") {
-      arrangedSubviews.insert(debugButton, at: 0)
+      arrangedSubviews.append(debugButton)
     }
     if Settings.isQueueEnabled {
-      arrangedSubviews.append(queueButton)
+      arrangedSubviews.append(controlsStack)
+    } else {
+      arrangedSubviews.append(openButton)
     }
 
     let view = UIStackView(arrangedSubviews: arrangedSubviews)
@@ -146,6 +185,28 @@ final class PlayerViewController: UIViewController {
   }
 
   @objc
+  private func handleBackwardButtonTap(_ seder: UIButton) {
+
+  }
+
+  @objc
+  private func handleForwardButtonTap(_ sender: UIButton) {
+
+  }
+
+  @objc
+  private func handleQueueButtonTap(_ sender: UIButton) {
+    let viewController = UINavigationController(rootViewController: QueueTableViewController(style: .plain))
+    viewController.modalPresentationStyle = .pageSheet
+    if let sheet = viewController.sheetPresentationController {
+      sheet.detents = [.medium(), .large()]
+      sheet.largestUndimmedDetentIdentifier = .medium
+      sheet.prefersGrabberVisible = true
+    }
+    present(viewController, animated: true)
+  }
+
+  @objc
   private func handleOpenButtonTap(_ sender: UIButton) {
     let alertController = UIAlertController(
       title: NSLocalizedString("Open video", comment: ""),
@@ -175,18 +236,5 @@ final class PlayerViewController: UIViewController {
     alertController.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel))
     alertController.view.tintColor = UIColor(named: "AccentColor")
     present(alertController, animated: true)
-  }
-
-  @objc
-  private func handleQueueButtonTap(_ sender: UIButton) {
-    let viewController = UINavigationController(rootViewController: QueueTableViewController(style: .plain))
-    viewController.modalPresentationStyle = .pageSheet
-    if let sheet = viewController.sheetPresentationController {
-      sheet.detents = [.medium(), .large()]
-      sheet.largestUndimmedDetentIdentifier = .medium
-      sheet.prefersScrollingExpandsWhenScrolledToEdge = false
-      sheet.preferredCornerRadius = 20
-    }
-    present(viewController, animated: true)
   }
 }

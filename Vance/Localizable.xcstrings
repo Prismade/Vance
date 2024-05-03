@@ -21,6 +21,16 @@
         }
       }
     },
+    "Clear" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Очистить"
+          }
+        }
+      }
+    },
     "Debug" : {
       "localizations" : {
         "ru" : {
