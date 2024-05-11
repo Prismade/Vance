@@ -9,51 +9,91 @@
 import AVFoundation
 
 final class PlayerModel {
-  var player: AVPlayer
+  let player: AVPlayer
+  let queue: PlayerQueue?
 
   init() {
-    self.player = AVPlayer()
+    self.player = if Settings.isQueueEnabled {
+      AVQueuePlayer()
+    } else {
+      AVPlayer()
+    }
     self.player.audiovisualBackgroundPlaybackPolicy = .continuesIfPossible
     self.player.automaticallyWaitsToMinimizeStalling = true
+
+    self.queue = if let queuePlayer = player as? AVQueuePlayer  {
+      PlayerQueue(player: queuePlayer)
+    } else {
+      nil
+    }
+  }
+
+  func setQueueDelegate(_ delegate: PlayerQueueDelegate) {
+    queue?.delegate = delegate
+  }
+
+  func queueViewControllerData() -> (videos: [Video], index: Int)? {
+    queue?.createDataForViewController()
+  }
+
+  func extractInfo(from url: String) async -> Video? {
+    do {
+      return try YoutubeDL()?.extractInfo(from: url)
+    } catch let error {
+      print(#file, #line, error.localizedDescription)
+      return nil
+    }
   }
 
   func playVideo(from url: String) async {
-    do {
-      guard let video = try YoutubeDL()?.extractInfo(from: url) else { return }
-      await MainActor.run {
-        play(video: video)
-      }
-    } catch let error {
-      print(#file, #line, error.localizedDescription)
+    guard let video = await extractInfo(from: url) else { return }
+    await MainActor.run {
+      play(video: video)
     }
   }
 
-  func play(video: Video) {
-    guard let videoURL = video.url, let videoHeaders = video.headers else { return }
-
-    let session = AVAudioSession.sharedInstance()
-    do {
-      try session.setActive(true)
-    } catch {
-      print(error.localizedDescription)
+  func addVideoToQueue(from url: String) async {
+    guard let video = await extractInfo(from: url) else { return }
+    await MainActor.run {
+      queue?.append(video: video)
     }
+  }
 
-    let asset = AVURLAsset(url: videoURL, options: ["AVURLAssetHTTPHeaderFieldsKey": videoHeaders])
-    let item = AVPlayerItem(asset: asset)
+  @MainActor
+  func addVideoToQueue(_ video: Video) async {
+    queue?.append(video: video)
+  }
 
-    var meta: [AVMutableMetadataItem] = []
+  func play(video: Video) {
+    guard let item = video.playerItem else { return }
 
-    let title = AVMutableMetadataItem()
-    title.identifier = .commonIdentifierTitle
-    title.value = (video.info.title ?? "YouTube video") as NSString
-    meta.append(title)
+    if Settings.isQueueEnabled {
+      queue?.open(video: video)
+    } else {
+      let session = AVAudioSession.sharedInstance()
+      do {
+        try session.setActive(true)
+      } catch {
+        print(error.localizedDescription)
+      }
 
+      player.replaceCurrentItem(with: item)
+      player.play()
 
-    item.externalMetadata = meta
-    
-    player.replaceCurrentItem(with: item)
-    player.play()
+      NotificationCenter.default.post(name: Notification.Name("ShouldUpdateVideoDetails"), object: self, userInfo: ["Video": video])
+    }
+  }
 
-    NotificationCenter.default.post(name: Notification.Name("ShouldUpdateVideoDetails"), object: self, userInfo: ["Video": video])
+  func forward() {
+    queue?.forward()
+  }
+
+  func backward() {
+    queue?.backward()
+  }
+
+  func clear() {
+    queue?.clear()
+    NotificationCenter.default.post(name: Notification.Name("ShouldUpdateVideoDetails"), object: self, userInfo: nil)
   }
 }

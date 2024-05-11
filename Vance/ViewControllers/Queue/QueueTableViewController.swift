@@ -9,6 +9,10 @@
 import UIKit
 
 final class QueueTableViewController: UITableViewController {
+  weak var model: PlayerModel?
+  private var videos: [Video] = []
+  private var currentVideoIndex: Int = 0
+
   private lazy var addButton: UIButton = {
     var configuration = UIButton.Configuration.filled()
     configuration.title = NSLocalizedString("Add", comment: "")
@@ -22,7 +26,7 @@ final class QueueTableViewController: UITableViewController {
     configuration.title = NSLocalizedString("Debug", comment: "")
     let button = UIButton(configuration: configuration)
     button.translatesAutoresizingMaskIntoConstraints = false
-    button.addTarget(self, action: #selector(handleAddButtonTap(_:)), for: .touchUpInside)
+    button.addTarget(self, action: #selector(handleDebugButtonTap(_:)), for: .touchUpInside)
     return button
   }()
   private lazy var buttonsStack: UIStackView = {
@@ -44,7 +48,6 @@ final class QueueTableViewController: UITableViewController {
       style: .plain,
       target: self,
       action: #selector(handleClearButtonTap(_:)))
-    item.tintColor = .opaqueSeparator
     navigationItem.leftBarButtonItem = item
     tableView.addSubview(buttonsStack)
     NSLayoutConstraint.activate([
@@ -64,27 +67,94 @@ final class QueueTableViewController: UITableViewController {
       right: 0.0)
   }
 
+  override func viewDidAppear(_ animated: Bool) {
+    super.viewDidAppear(animated)
+    guard let (videos, index) = model?.queueViewControllerData() else { return }
+    updateTableView(withVideos: videos, currentVideoIndex: index)
+  }
+
+  private func updateTableView(withVideos videos: [Video], currentVideoIndex index: Int) {
+    self.videos = videos
+    self.currentVideoIndex = index
+    tableView.reloadSections(IndexSet(integer: 0), with: .automatic)
+    if videos.isEmpty {
+      navigationItem.leftBarButtonItem?.isEnabled = false
+    } else {
+      navigationItem.leftBarButtonItem?.isEnabled = true
+      tableView.selectRow(at: IndexPath(row: currentVideoIndex, section: 0), animated: true, scrollPosition: .middle)
+    }
+  }
+
   @objc
   private func handleAddButtonTap(_ sender: UIButton) {
-
+    let alertController = UIAlertController(
+      title: NSLocalizedString("Add video to queue", comment: ""),
+      message: NSLocalizedString("Paste a link to a YouTube video here and hit the add button", comment: ""),
+      preferredStyle: .alert)
+    alertController.addTextField { textField in
+      textField.clearButtonMode = .whileEditing
+      textField.keyboardType = .URL
+      textField.placeholder = "https://youtu.be/..."
+    }
+    alertController.addAction(
+      UIAlertAction(
+        title: NSLocalizedString("Add", comment: ""),
+        style: .default,
+        handler: { [weak self] _ in
+          guard
+            let self,
+            let urlText = alertController.textFields?.first?.text,
+            !urlText.isEmpty
+          else {
+            return
+          }
+          Task {
+            await self.model?.addVideoToQueue(from: urlText)
+          }
+        }))
+    alertController.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel))
+    alertController.view.tintColor = UIColor(named: "AccentColor")
+    present(alertController, animated: true)
   }
 
   @objc
   private func handleDebugButtonTap(_ sender: UIButton) {
-    
+    let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+    alertController.addAction(
+      UIAlertAction(
+        title: NSLocalizedString("Add test video", comment: ""),
+        style: .default,
+        handler: { [weak self] _ in
+          guard let self else { return }
+          let testVideo = Video.sample
+          Task {
+            await self.model?.addVideoToQueue(testVideo)
+          }
+        }))
+    alertController.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel))
+    alertController.view.tintColor = UIColor(named: "AccentColor")
+    present(alertController, animated: true)
   }
 
   @objc
   private func handleClearButtonTap(_ sender: UIBarButtonItem) {
-
+    model?.clear()
   }
 
   override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    return 0
+    return videos.count
   }
 
   override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-    let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: QueueTableViewCell.self), for: indexPath)
+    let genericCell = tableView.dequeueReusableCell(withIdentifier: String(describing: QueueTableViewCell.self), for: indexPath)
+    guard let cell = genericCell as? QueueTableViewCell else { return genericCell }
+    cell.update(withVideo: videos[indexPath.row])
     return cell
+  }
+}
+
+extension QueueTableViewController: PlayerQueueDelegate {
+  func playerQueueDidUpdate(videos: [Video], currentVideoIndex index: Int) {
+    updateTableView(withVideos: videos, currentVideoIndex: index)
   }
 }

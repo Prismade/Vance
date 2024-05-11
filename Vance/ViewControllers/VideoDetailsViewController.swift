@@ -130,8 +130,7 @@ final class VideoDetailsViewController: UITableViewController {
 
   @objc
   private func handleUpdateVideoDetailsNotification(_ notification: Notification) {
-    guard let video = notification.userInfo?["Video"] as? Video else { return }
-    self.video = video
+    video = notification.userInfo?["Video"] as? Video
     tableView.reloadData()
   }
 
@@ -143,24 +142,30 @@ final class VideoDetailsViewController: UITableViewController {
     switch indexPath.row {
     case 0:
       let genericCell = tableView.dequeueReusableCell(withIdentifier: String(describing: VideoDetailsTableViewCell.self), for: indexPath)
-      guard let cell = genericCell as? VideoDetailsTableViewCell, let video else { return genericCell }
+      guard let cell = genericCell as? VideoDetailsTableViewCell else { return genericCell }
+      if let video {
+        var subtitle: String?
+        let df = DateFormatter()
+        df.dateFormat = "YYYYMMdd"
+        if let viewsCount = video.info.viewsCount, let timestamp = video.info.uploadDate, let date = df.date(from: timestamp) {
+          let uploadDate = RelativeDateTimeFormatter().localizedString(for: date, relativeTo: Date())
 
-      var subtitle: String?
-      let df = DateFormatter()
-      df.dateFormat = "YYYYMMdd"
-      if let viewsCount = video.info.viewsCount, let timestamp = video.info.uploadDate, let date = df.date(from: timestamp) {
-        let uploadDate = RelativeDateTimeFormatter().localizedString(for: date, relativeTo: Date())
+          subtitle = String(format: "%@ %@ • %@", viewsCount.formattedUsingAbbrevation, NSLocalizedString("views", comment: ""), uploadDate)
+        }
 
-        subtitle = String(format: "%@ %@ • %@", viewsCount.formattedUsingAbbrevation, NSLocalizedString("views", comment: ""), uploadDate)
+        cell.configure(withTitle: video.info.title, subtitle: subtitle)
+      } else {
+        cell.configure(withTitle: nil, subtitle: nil)
       }
-
-      cell.configure(withTitle: video.info.title, subtitle: subtitle)
       return cell
     case 1:
       let genericCell = tableView.dequeueReusableCell(withIdentifier: String(describing: ChannelTableViewCell.self), for: indexPath)
-      guard let cell = genericCell as? ChannelTableViewCell, let video else { return genericCell }
-
-      cell.configure(title: video.channel.name, followers: video.channel.followersCount?.formattedUsingAbbrevation)
+      guard let cell = genericCell as? ChannelTableViewCell else { return genericCell }
+      if let video {
+        cell.configure(title: video.channel.name, followers: video.channel.followersCount?.formattedUsingAbbrevation)
+      } else {
+        cell.configure(title: nil, followers: nil)
+      }
       return cell
     default:
       return UITableViewCell()

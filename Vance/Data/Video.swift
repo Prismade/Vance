@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import AVFoundation
 
 final class Info {
   let title: String?
@@ -136,6 +137,23 @@ final class Video {
       channelFollowersCount: 3222456,
       channelIsVerified: true,
       json: [:])
+  }
+
+  var playerItem: AVPlayerItem? {
+    guard let url, let headers else { return nil }
+
+    let asset = AVURLAsset(url: url, options: ["AVURLAssetHTTPHeaderFieldsKey": headers])
+    let item = AVPlayerItem(asset: asset)
+
+    var meta: [AVMutableMetadataItem] = []
+
+    let title = AVMutableMetadataItem()
+    title.identifier = .commonIdentifierTitle
+    title.value = (info.title ?? "YouTube video") as NSString
+    meta.append(title)
+    item.externalMetadata = meta
+
+    return item
   }
 }
 

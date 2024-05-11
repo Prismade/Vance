@@ -186,17 +186,20 @@ final class PlayerViewController: UIViewController {
 
   @objc
   private func handleBackwardButtonTap(_ seder: UIButton) {
-
+    model.backward()
   }
 
   @objc
   private func handleForwardButtonTap(_ sender: UIButton) {
-
+    model.forward()
   }
 
   @objc
   private func handleQueueButtonTap(_ sender: UIButton) {
-    let viewController = UINavigationController(rootViewController: QueueTableViewController(style: .plain))
+    let queueViewController = QueueTableViewController(style: .plain)
+    queueViewController.model = model
+    model.setQueueDelegate(queueViewController)
+    let viewController = UINavigationController(rootViewController: queueViewController)
     viewController.modalPresentationStyle = .pageSheet
     if let sheet = viewController.sheetPresentationController {
       sheet.detents = [.medium(), .large()]

@@ -11,6 +11,26 @@
         }
       }
     },
+    "Add test video" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Добавить тестовое видео"
+          }
+        }
+      }
+    },
+    "Add video to queue" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Добавить видео в очередь"
+          }
+        }
+      }
+    },
     "Cancel" : {
       "localizations" : {
         "ru" : {
@@ -67,6 +87,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Открыть видео"
+          }
+        }
+      }
+    },
+    "Paste a link to a YouTube video here and hit the add button" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Вставьте ссылку на YouTube-видео и нажмите \"Добавить\""
           }
         }
       }
