@@ -1,8 +1,14 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
-    "Add" : {
+    "add" : {
       "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Add"
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
@@ -11,88 +17,30 @@
         }
       }
     },
-    "Add test video" : {
+    "add-test-video" : {
       "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Add test video to queue"
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Добавить тестовое видео"
+            "value" : "Добавить тестовое видео в очередь"
           }
         }
       }
     },
-    "Add video to queue" : {
+    "add-video-message" : {
       "localizations" : {
-        "ru" : {
+        "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Добавить видео в очередь"
+            "value" : "Paste a link to a YouTube video here and hit the add button"
           }
-        }
-      }
-    },
-    "Cancel" : {
-      "localizations" : {
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Отмена"
-          }
-        }
-      }
-    },
-    "Clear" : {
-      "localizations" : {
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Очистить"
-          }
-        }
-      }
-    },
-    "Debug" : {
-      "localizations" : {
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Отладка"
-          }
-        }
-      }
-    },
-    "Open" : {
-      "localizations" : {
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Открыть"
-          }
-        }
-      }
-    },
-    "Open test video" : {
-      "localizations" : {
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Открыть тестовое видео"
-          }
-        }
-      }
-    },
-    "Open video" : {
-      "localizations" : {
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Открыть видео"
-          }
-        }
-      }
-    },
-    "Paste a link to a YouTube video here and hit the add button" : {
-      "localizations" : {
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
@@ -101,8 +49,110 @@
         }
       }
     },
-    "Paste a link to a YouTube video here and hit the open button" : {
+    "add-video-title" : {
       "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Add video to queue"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Добавить видео в очередь"
+          }
+        }
+      }
+    },
+    "cancel" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cancel"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Отмена"
+          }
+        }
+      }
+    },
+    "clear" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Clear"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Очистить"
+          }
+        }
+      }
+    },
+    "debug" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Debug"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Отладка"
+          }
+        }
+      }
+    },
+    "open" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Open"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Открыть"
+          }
+        }
+      }
+    },
+    "open-test-video" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Open test video"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Открыть тестовое видео"
+          }
+        }
+      }
+    },
+    "open-video-message" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Paste a link to a YouTube video here and hit the open button"
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
@@ -111,8 +161,30 @@
         }
       }
     },
-    "Queue" : {
+    "open-video-title" : {
       "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Open video"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Открыть видео"
+          }
+        }
+      }
+    },
+    "queue" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Queue"
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
@@ -121,7 +193,7 @@
         }
       }
     },
-    "ShortForBillions" : {
+    "short-for-billions" : {
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -132,12 +204,12 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : " млрд."
+            "value" : "млрд."
           }
         }
       }
     },
-    "ShortForMillions" : {
+    "short-for-millions" : {
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -148,12 +220,12 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : " млн."
+            "value" : "млн."
           }
         }
       }
     },
-    "ShortForThousands" : {
+    "short-for-thousands" : {
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -164,13 +236,19 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : " тыс."
+            "value" : "тыс."
           }
         }
       }
     },
     "views" : {
       "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "views"
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",

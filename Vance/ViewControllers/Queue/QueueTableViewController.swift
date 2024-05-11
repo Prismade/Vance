@@ -15,7 +15,7 @@ final class QueueTableViewController: UITableViewController {
 
   private lazy var addButton: UIButton = {
     var configuration = UIButton.Configuration.filled()
-    configuration.title = NSLocalizedString("Add", comment: "")
+    configuration.title = NSLocalizedString("add", comment: "")
     let button = UIButton(configuration: configuration)
     button.translatesAutoresizingMaskIntoConstraints = false
     button.addTarget(self, action: #selector(handleAddButtonTap(_:)), for: .touchUpInside)
@@ -23,7 +23,7 @@ final class QueueTableViewController: UITableViewController {
   }()
   private lazy var debugButton: UIButton = {
     var configuration = UIButton.Configuration.filled()
-    configuration.title = NSLocalizedString("Debug", comment: "")
+    configuration.title = NSLocalizedString("debug", comment: "")
     let button = UIButton(configuration: configuration)
     button.translatesAutoresizingMaskIntoConstraints = false
     button.addTarget(self, action: #selector(handleDebugButtonTap(_:)), for: .touchUpInside)
@@ -44,7 +44,7 @@ final class QueueTableViewController: UITableViewController {
   override func loadView() {
     super.loadView()
     let item = UIBarButtonItem(
-      title: NSLocalizedString("Clear", comment: ""),
+      title: NSLocalizedString("clear", comment: ""),
       style: .plain,
       target: self,
       action: #selector(handleClearButtonTap(_:)))
@@ -88,8 +88,8 @@ final class QueueTableViewController: UITableViewController {
   @objc
   private func handleAddButtonTap(_ sender: UIButton) {
     let alertController = UIAlertController(
-      title: NSLocalizedString("Add video to queue", comment: ""),
-      message: NSLocalizedString("Paste a link to a YouTube video here and hit the add button", comment: ""),
+      title: NSLocalizedString("add-video-title", comment: ""),
+      message: NSLocalizedString("add-video-message", comment: ""),
       preferredStyle: .alert)
     alertController.addTextField { textField in
       textField.clearButtonMode = .whileEditing
@@ -98,7 +98,7 @@ final class QueueTableViewController: UITableViewController {
     }
     alertController.addAction(
       UIAlertAction(
-        title: NSLocalizedString("Add", comment: ""),
+        title: NSLocalizedString("add", comment: ""),
         style: .default,
         handler: { [weak self] _ in
           guard
@@ -112,7 +112,7 @@ final class QueueTableViewController: UITableViewController {
             await self.model?.addVideoToQueue(from: urlText)
           }
         }))
-    alertController.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel))
+    alertController.addAction(UIAlertAction(title: NSLocalizedString("cancel", comment: ""), style: .cancel))
     alertController.view.tintColor = UIColor(named: "AccentColor")
     present(alertController, animated: true)
   }
@@ -122,7 +122,7 @@ final class QueueTableViewController: UITableViewController {
     let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
     alertController.addAction(
       UIAlertAction(
-        title: NSLocalizedString("Add test video", comment: ""),
+        title: NSLocalizedString("add-test-video", comment: ""),
         style: .default,
         handler: { [weak self] _ in
           guard let self else { return }
@@ -131,7 +131,7 @@ final class QueueTableViewController: UITableViewController {
             await self.model?.addVideoToQueue(testVideo)
           }
         }))
-    alertController.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel))
+    alertController.addAction(UIAlertAction(title: NSLocalizedString("cancel", comment: ""), style: .cancel))
     alertController.view.tintColor = UIColor(named: "AccentColor")
     present(alertController, animated: true)
   }

@@ -12,13 +12,13 @@
 			<key>Title</key>
 			<string></string>
 			<key>FooterText</key>
-			<string>(Requires restart) Enables use of custom non-system player on video screen</string>
+			<string>custom-player-enabled-footer-text</string>
 		</dict>
 		<dict>
 			<key>Type</key>
 			<string>PSToggleSwitchSpecifier</string>
 			<key>Title</key>
-			<string>Is custom player enabled</string>
+			<string>custom-player-enabled-title</string>
 			<key>Key</key>
 			<string>custom-player-enabled</string>
 			<key>DefaultValue</key>
@@ -30,13 +30,13 @@
 			<key>Title</key>
 			<string></string>
 			<key>FooterText</key>
-			<string>(Requires restart) Enables use of queue on video screen</string>
+			<string>queue-enabled-footer-text</string>
 		</dict>
 		<dict>
 			<key>Type</key>
 			<string>PSToggleSwitchSpecifier</string>
 			<key>Title</key>
-			<string>Is queue enabled</string>
+			<string>queue-enabled-title</string>
 			<key>Key</key>
 			<string>queue-enabled</string>
 			<key>DefaultValue</key>

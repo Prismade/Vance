@@ -16,9 +16,9 @@ extension Int {
     }
 
     let units = [
-      NSLocalizedString("ShortForThousands", comment: ""),
-      NSLocalizedString("ShortForMillions", comment: ""),
-      NSLocalizedString("ShortForBillions", comment: "")
+      NSLocalizedString("short-for-thousands", comment: ""),
+      NSLocalizedString("short-for-millions", comment: ""),
+      NSLocalizedString("short-for-billions", comment: "")
     ]
 
     let exp = Int(log10(Double(self)) / 3.0)

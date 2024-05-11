@@ -1,6 +1,6 @@
 /* A single strings file, whose title is specified in your preferences schema. The strings files provide the localized content to display to the user for each of your preferences. */
 
-"Is custom player enabled" = "Использовать свой плеер для видео";
-"(Requires restart) Enables use of custom non-system player on video screen" = "(Требуется перезапуск) Включает использование своего, не системного плеера на экране с видео";
-"Is queue enabled" = "Использовать очередь для видео";
-"(Requires restart) Enables use of queue on video screen" = "(Требуется перезапуск) Включает очередь на экране с видео";
+"custom-player-enabled-title" = "Использовать свой плеер для видео";
+"custom-player-enabled-footer-text" = "(Требуется перезапуск) Включает использование своего, не системного плеера на экране с видео";
+"queue-enabled-title" = "Использовать очередь для видео";
+"queue-enabled-footer-text" = "(Требуется перезапуск) Включает очередь на экране с видео";

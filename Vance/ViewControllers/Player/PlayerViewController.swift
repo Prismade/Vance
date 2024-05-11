@@ -31,7 +31,7 @@ final class PlayerViewController: UIViewController {
   }()
   private lazy var debugButton: UIButton = {
     var configuration = UIButton.Configuration.gray()
-    configuration.title = NSLocalizedString("Debug", comment: "")
+    configuration.title = NSLocalizedString("debug", comment: "")
     let button = UIButton(configuration: configuration)
     button.translatesAutoresizingMaskIntoConstraints = false
     button.addTarget(self, action: #selector(handleDebugButtonTap(_:)), for: .touchUpInside)
@@ -61,7 +61,7 @@ final class PlayerViewController: UIViewController {
   }()
   private lazy var queueButton: UIButton = {
     var configuration = UIButton.Configuration.gray()
-    configuration.title = NSLocalizedString("Queue", comment: "")
+    configuration.title = NSLocalizedString("queue", comment: "")
     let button = UIButton(configuration: configuration)
     button.translatesAutoresizingMaskIntoConstraints = false
     button.addTarget(self, action: #selector(handleQueueButtonTap(_:)), for: .touchUpInside)
@@ -72,7 +72,7 @@ final class PlayerViewController: UIViewController {
     if Settings.isQueueEnabled {
       configuration.image = UIImage(systemName: "plus.app")
     } else {
-      configuration.title = NSLocalizedString("Open", comment: "")
+      configuration.title = NSLocalizedString("open", comment: "")
     }
     let button = UIButton(configuration: configuration)
     button.translatesAutoresizingMaskIntoConstraints = false
@@ -172,14 +172,14 @@ final class PlayerViewController: UIViewController {
     let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
     alertController.addAction(
       UIAlertAction(
-        title: NSLocalizedString("Open test video", comment: ""),
+        title: NSLocalizedString("open-test-video", comment: ""),
         style: .default,
         handler: { [weak self] _ in
           guard let self else { return }
           let testVideo = Video.sample
           self.model.play(video: testVideo)
         }))
-    alertController.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel))
+    alertController.addAction(UIAlertAction(title: NSLocalizedString("cancel", comment: ""), style: .cancel))
     alertController.view.tintColor = UIColor(named: "AccentColor")
     present(alertController, animated: true)
   }
@@ -212,8 +212,8 @@ final class PlayerViewController: UIViewController {
   @objc
   private func handleOpenButtonTap(_ sender: UIButton) {
     let alertController = UIAlertController(
-      title: NSLocalizedString("Open video", comment: ""),
-      message: NSLocalizedString("Paste a link to a YouTube video here and hit the open button", comment: ""),
+      title: NSLocalizedString("open-video-title", comment: ""),
+      message: NSLocalizedString("open-video-message", comment: ""),
       preferredStyle: .alert)
     alertController.addTextField { textField in
       textField.clearButtonMode = .whileEditing
@@ -222,7 +222,7 @@ final class PlayerViewController: UIViewController {
     }
     alertController.addAction(
       UIAlertAction(
-        title: NSLocalizedString("Open", comment: ""),
+        title: NSLocalizedString("open", comment: ""),
         style: .default,
         handler: { [weak self] _ in
           guard 
@@ -236,7 +236,7 @@ final class PlayerViewController: UIViewController {
             await self.model.playVideo(from: urlText)
           }
         }))
-    alertController.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel))
+    alertController.addAction(UIAlertAction(title: NSLocalizedString("cancel", comment: ""), style: .cancel))
     alertController.view.tintColor = UIColor(named: "AccentColor")
     present(alertController, animated: true)
   }
