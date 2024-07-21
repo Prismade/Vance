@@ -65,3 +65,7 @@ iOSInjectionProject/
 
 # macOS Specific Files
 .DS_Store
+
+# Python interpreter files
+python-stdlib/
+Vance/Python.xcframework
