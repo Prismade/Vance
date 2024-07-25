@@ -12,6 +12,7 @@
 		244902B72BE58D6500C96EB9 /* QueueTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 244902B62BE58D6500C96EB9 /* QueueTableViewCell.swift */; };
 		246D53D32976914B00098B1B /* Dictionary+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246D53D22976914B00098B1B /* Dictionary+Convenience.swift */; };
 		246E8CA92AB23E6300E47D57 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 246E8CA82AB23E6300E47D57 /* Localizable.xcstrings */; };
+		2477C4FA2C5231A9009E4E8F /* dylib-Info-template.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2477C4F92C5231A9009E4E8F /* dylib-Info-template.plist */; };
 		2487F88E2B7AC1D2009AA9FA /* Int+Format.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2487F88D2B7AC1D2009AA9FA /* Int+Format.swift */; };
 		249C8B1C2A9FFD850066D73C /* PlayerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249C8B1B2A9FFD850066D73C /* PlayerModel.swift */; };
 		24A9D6982B28AA470007BFD8 /* yt-dlp in Resources */ = {isa = PBXBuildFile; fileRef = 24A9D6972B28AA470007BFD8 /* yt-dlp */; };
@@ -37,6 +38,7 @@
 		244902B62BE58D6500C96EB9 /* QueueTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QueueTableViewCell.swift; sourceTree = "<group>"; };
 		246D53D22976914B00098B1B /* Dictionary+Convenience.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Dictionary+Convenience.swift"; sourceTree = "<group>"; };
 		246E8CA82AB23E6300E47D57 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
+		2477C4F92C5231A9009E4E8F /* dylib-Info-template.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "dylib-Info-template.plist"; sourceTree = "<group>"; };
 		2487F88D2B7AC1D2009AA9FA /* Int+Format.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int+Format.swift"; sourceTree = "<group>"; };
 		249C8B1B2A9FFD850066D73C /* PlayerModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerModel.swift; sourceTree = "<group>"; };
 		24A9D6972B28AA470007BFD8 /* yt-dlp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "yt-dlp"; sourceTree = SOURCE_ROOT; };
@@ -162,6 +164,7 @@
 				24C0428A28D257AA00270C62 /* Assets.xcassets */,
 				246E8CA82AB23E6300E47D57 /* Localizable.xcstrings */,
 				24C0428F28D257AA00270C62 /* Info.plist */,
+				2477C4F92C5231A9009E4E8F /* dylib-Info-template.plist */,
 			);
 			path = Vance;
 			sourceTree = "<group>";
@@ -184,6 +187,7 @@
 				24C0427A28D257AA00270C62 /* Sources */,
 				24C0427B28D257AA00270C62 /* Frameworks */,
 				24C0427C28D257AA00270C62 /* Resources */,
+				2477C4F82C52310B009E4E8F /* Purge Python Binary Modules for Non-Target Platforms */,
 				24D5B60229BA5DCE0060F8BF /* Sign Python Binary Modules */,
 			);
 			buildRules = (
@@ -246,12 +250,32 @@
 				24DF8C572BA9D859009890A0 /* Settings.bundle in Resources */,
 				24C0428B28D257AA00270C62 /* Assets.xcassets in Resources */,
 				24D5B60129BA5D5B0060F8BF /* python-stdlib in Resources */,
+				2477C4FA2C5231A9009E4E8F /* dylib-Info-template.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		2477C4F82C52310B009E4E8F /* Purge Python Binary Modules for Non-Target Platforms */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Purge Python Binary Modules for Non-Target Platforms";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if [ \"$EFFECTIVE_PLATFORM_NAME\" = \"-iphonesimulator\" ]; then\n    echo \"Purging Python modules for iOS Device\"\n    find \"$CODESIGNING_FOLDER_PATH/python-stdlib\" -name \"*.*-iphoneos.dylib\" -exec rm -f \"{}\" \\;\nelse\n    echo \"Purging Python modules for iOS Simulator\"\n    find \"$CODESIGNING_FOLDER_PATH\" -name \"*.*-iphonesimulator.dylib\" -exec rm -f \"{}\" \\;\nfi\n";
+		};
 		24D5B60229BA5DCE0060F8BF /* Sign Python Binary Modules */ = {
 			isa = PBXShellScriptBuildPhase;
 			alwaysOutOfDate = 1;
@@ -269,7 +293,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "set -e\necho \"Signing as $EXPANDED_CODE_SIGN_IDENTITY_NAME ($EXPANDED_CODE_SIGN_IDENTITY)\"\nfind \"$CODESIGNING_FOLDER_PATH/python-stdlib/lib-dynload\" -name \"*.so\" -exec /usr/bin/codesign --force --sign \"$EXPANDED_CODE_SIGN_IDENTITY\" -o runtime --timestamp=none --preserve-metadata=identifier,entitlements,flags --generate-entitlement-der {} \\;\n";
+			shellScript = "set -e\n\ninstall_dylib () {\n    INSTALL_BASE=$1\n    FULL_DYLIB=$2\n\n    # The name of the .dylib file\n    DYLIB=$(basename \"$FULL_DYLIB\")\n    # The name of the .dylib file, relative to the install base\n    RELATIVE_DYLIB=${FULL_DYLIB#$CODESIGNING_FOLDER_PATH/$INSTALL_BASE/}\n    # The (hopefully unique) name of the framework, constructed by replacing path\n    # separators in the relative name with underscores.\n    FRAMEWORK_NAME=$(echo $RELATIVE_DYLIB | cut -d \".\" -f 1 | tr \"/\" \"_\");\n    # A bundle identifier; not actually used, but required by Xcode framework packaging\n    FRAMEWORK_BUNDLE_ID=$(echo $PRODUCT_BUNDLE_IDENTIFIER.$FRAMEWORK_NAME | tr \"_\" \"-\")\n    # The name of the framework folder.\n    FRAMEWORK_FOLDER=\"Frameworks/$FRAMEWORK_NAME.framework\"\n\n    # If the framework folder doesn't exist, create it.\n    if [ ! -d \"$CODESIGNING_FOLDER_PATH/$FRAMEWORK_FOLDER\" ]; then\n        echo \"Creating framework for $RELATIVE_DYLIB\"\n        mkdir -p \"$CODESIGNING_FOLDER_PATH/$FRAMEWORK_FOLDER\"\n\n        cp \"$CODESIGNING_FOLDER_PATH/dylib-Info-template.plist\" \"$CODESIGNING_FOLDER_PATH/$FRAMEWORK_FOLDER/Info.plist\"\n        defaults write \"$CODESIGNING_FOLDER_PATH/$FRAMEWORK_FOLDER/Info.plist\" CFBundleExecutable -string \"$DYLIB\"\n        defaults write \"$CODESIGNING_FOLDER_PATH/$FRAMEWORK_FOLDER/Info.plist\" CFBundleIdentifier -string \"$FRAMEWORK_BUNDLE_ID\"\n    fi\n\n    echo \"Installing binary for $RELATIVE_DYLIB\"\n    mv \"$FULL_DYLIB\" \"$CODESIGNING_FOLDER_PATH/$FRAMEWORK_FOLDER\"\n}\n\necho \"Install standard library dylibs...\"\nfind \"$CODESIGNING_FOLDER_PATH/python-stdlib/lib-dynload\" -name \"*.dylib\" | while read FULL_DYLIB; do\n    install_dylib python-stdlib/lib-dynload \"$FULL_DYLIB\"\ndone\n\n# Clean up dylib template\nrm -f \"$CODESIGNING_FOLDER_PATH/dylib-Info-template.plist\"\n\necho \"Signing frameworks as $EXPANDED_CODE_SIGN_IDENTITY_NAME ($EXPANDED_CODE_SIGN_IDENTITY)...\"\nfind \"$CODESIGNING_FOLDER_PATH/Frameworks\" -name \"*.framework\" -exec /usr/bin/codesign --force --sign \"$EXPANDED_CODE_SIGN_IDENTITY\" ${OTHER_CODE_SIGN_FLAGS:-} -o runtime --timestamp=none --preserve-metadata=identifier,entitlements,flags --generate-entitlement-der \"{}\" \\;\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -425,6 +449,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = NO;
 				DEVELOPMENT_TEAM = MZN9WUBPNG;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Vance/Info.plist;
@@ -455,6 +480,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = NO;
 				DEVELOPMENT_TEAM = MZN9WUBPNG;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Vance/Info.plist;
