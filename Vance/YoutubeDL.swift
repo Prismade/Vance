@@ -39,8 +39,7 @@ final class YoutubeDL {
 
     let options: PythonObject = [
       "nocheckcertificate": true,
-      "format": "(mp4)[height<=720][acodec!=none]",
-      "verbose": true
+      "format": "(mp4)[height<=720][acodec!=none]"
     ]
 
     let ytdlp = ytdlpModule.YoutubeDL(options)
